@@ -338,7 +338,35 @@
 - (void)didUpdateBMKUserLocation:(BMKUserLocation *)userLocation
 {
     [_mapView updateLocationData:userLocation];
-    //    NSLog(@"经度:%f  纬度:%f",userLocation.location.coordinate.latitude,userLocation.location.coordinate.longitude);
+        NSLog(@"--经度:%f  纬度:%f",userLocation.location.coordinate.latitude,userLocation.location.coordinate.longitude);
+    
+    // 用户最新位置
+    CLLocation *location = [[CLLocation alloc]initWithLatitude:userLocation.location.coordinate.latitude longitude:userLocation.location.coordinate.longitude];
+    
+    // 获取用户坐标
+    NSLog(@"纬度%f 经度%f", location.coordinate.latitude, location.coordinate.longitude);
+    
+    // 反地理编码(逆地理编码) : 把坐标信息转化为地址信息
+    // 地理编码 : 把地址信息转换为坐标信息
+    
+    // 地理编码类
+    CLGeocoder *geocoder = [[CLGeocoder alloc] init];
+    // 参数1:用户位置
+    // 参数2:反地理编码完成之后的block
+    [geocoder reverseGeocodeLocation:location completionHandler:^(NSArray *placemarks, NSError *error) {
+        if (error) {
+            NSLog(@"反地理编码失败");
+            return ;
+        }
+        
+        CLPlacemark *placeMark = [placemarks firstObject];
+        NSLog(@"国家:%@ 城市:%@ 区:%@ 具体位置:%@", placeMark.country, placeMark.locality, placeMark.subLocality, placeMark.name);
+        
+        [_locService stopUserLocationService];
+    }];
+    
+
+    
 }
 
 /**

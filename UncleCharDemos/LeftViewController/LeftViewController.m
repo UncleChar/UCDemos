@@ -17,7 +17,7 @@
 #import "MasonryViewController.h"
 #import "LocationViewController.h"
 #import "LocationVC.h"
-
+#import "ContactsSelectorViewController.h"
 #define kScreenHeight  [UIScreen mainScreen].bounds.size.height
 #define kScreenWidth  [UIScreen mainScreen].bounds.size.width
 
@@ -90,7 +90,7 @@
     
   
     
-    _titleListArray = @[@"数据库测试-[FMDB]", @"MasonryTest", @"定位", @"Location", @"我的收藏", @"我的相册", @"我的文件"];
+    _titleListArray = @[@"数据库测试-[FMDB]", @"MasonryTest", @"定位", @"我的位置", @"Account", @"我的好友", @"我的文件"];
     
     _listTableView = [[UITableView alloc]initWithFrame:CGRectMake(0, CGRectGetMaxY(_headBackgrooundImg.frame),self.view.frame.size.width, self.view.frame.size.height-_headView.frame.size.height) style:UITableViewStylePlain];
     _listTableView.dataSource = self;
@@ -182,8 +182,11 @@
             
             break;
         case 4:
+        {
+            ContactsSelectorViewController *locationVC = [[ContactsSelectorViewController alloc]init];
+            [baseVC.navigationController pushViewController:locationVC animated:YES];
             
-            
+        }
             break;
         case 5:
             

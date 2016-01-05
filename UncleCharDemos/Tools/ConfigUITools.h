@@ -13,4 +13,6 @@
 + (UIButton *)configButtonWithTitle:(NSString *)title color:(UIColor *)color fontSize:(CGFloat)size frame:(CGRect)frame superView:(UIView *)superView ;
 
 + (UIColor *)colorWithR:(CGFloat)red G:(CGFloat)green B:(CGFloat)balck A:(CGFloat)alpha;
+
++ (UIColor *)colorRandomly;
 @end
