@@ -64,12 +64,13 @@ static  AppEngineManager *sharesElement = nil;
         
         self.dirDBSqlite = [self.dirDocument stringByAppendingPathComponent:@"MyAppDataBase.sqlite"];
         
-        NSLog(@"    BaseViewController:%@",self.baseViewController);
-        NSLog(@"BaseViewControllerNavC:%@",self.baseNavController);
-        NSLog(@"               MainTBC:%@",self.mainTabBarController);
-        NSLog(@"          DocumentPath:%@",self.dirDocument);
-        NSLog(@"             CachePath:%@",self.dirCache);
-        NSLog(@"              TempPath:%@",self.dirTemp);
+        NSLog(@"    BaseViewController : %@",self.baseViewController);
+        NSLog(@"          BaseViewCNav : %@",self.baseViewController.navigationController);
+        NSLog(@"BaseViewControllerNavC : %@",self.baseNavController);
+        NSLog(@"               MainTBC : %@",self.mainTabBarController);
+        NSLog(@"          DocumentPath : %@",self.dirDocument);
+        NSLog(@"             CachePath : %@",self.dirCache);
+        NSLog(@"              TempPath : %@",self.dirTemp);
     }
     return self;
 }

@@ -115,7 +115,7 @@
         make.left.equalTo(_baseView.mas_left).with.offset(padding1);
         make.right.equalTo(_baseView.mas_right).with.offset(-padding1);
         make.bottom.equalTo(_userPassword.mas_top).with.offset(- padding1);
-        make.top.equalTo(_baseView.mas_top).with.offset(12 * padding1);
+        make.top.equalTo(_baseView.mas_top).with.offset(10 * padding1);
         make.height.mas_equalTo(@40);
         make.width.equalTo(_userPassword);
     }];
@@ -316,7 +316,7 @@
 
     double duration = [[notify.userInfo objectForKey:UIKeyboardAnimationDurationUserInfoKey] doubleValue];
     [UIView animateWithDuration:duration + 0.3 animations:^{
-        _baseView.frame = self.view.frame;
+        _baseView.frame = CGRectMake(self.view.frame.origin.x, self.view.frame.origin.y, self.view.frame.size.width, self.view.frame.size.height);
     }];
 }
 

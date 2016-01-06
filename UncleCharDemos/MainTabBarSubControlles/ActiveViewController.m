@@ -7,6 +7,7 @@
 //
 
 #import "ActiveViewController.h"
+#import "ConfigUITools.h"
 
 @implementation ActiveViewController
 - (void)viewWillAppear:(BOOL)animated {
@@ -16,7 +17,7 @@
 }
 - (void)viewDidLoad {
     [super viewDidLoad];
-    self.view.backgroundColor = [UIColor purpleColor];
+    self.view.backgroundColor = [ConfigUITools colorRandomly];
     self.title = @"ACTIVE";
     
 }

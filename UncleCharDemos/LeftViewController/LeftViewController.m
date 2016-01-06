@@ -14,10 +14,10 @@
 #import "UserSignViewController.h"
 #import "RenewUserAvatarViewController.h"
 #import "OperateDBViewController.h"
-#import "MasonryViewController.h"
 #import "LocationViewController.h"
-#import "LocationVC.h"
 #import "ContactsSelectorViewController.h"
+#import "GifPlayViewController.h"
+
 #define kScreenHeight  [UIScreen mainScreen].bounds.size.height
 #define kScreenWidth  [UIScreen mainScreen].bounds.size.width
 
@@ -90,7 +90,7 @@
     
   
     
-    _titleListArray = @[@"数据库测试-[FMDB]", @"MasonryTest", @"定位", @"我的位置", @"Account", @"我的好友", @"我的文件"];
+    _titleListArray = @[@"数据库测试-[FMDB]", @"MyLocation", @"UserAccount", @"GifPlayer", @"我的", @"我的", @"我的文件"];
     
     _listTableView = [[UITableView alloc]initWithFrame:CGRectMake(0, CGRectGetMaxY(_headBackgrooundImg.frame),self.view.frame.size.width, self.view.frame.size.height-_headView.frame.size.height) style:UITableViewStylePlain];
     _listTableView.dataSource = self;
@@ -100,7 +100,6 @@
     _listTableView.layer.cornerRadius = 5;
     _listTableView.layer.masksToBounds = 1;
     [self.view addSubview:_listTableView];
-
     
 }
 
@@ -159,15 +158,15 @@
             break;
         case 1:
         {
-            MasonryViewController *masonryVC = [[MasonryViewController alloc]init];
-            [baseVC.navigationController pushViewController:masonryVC animated:YES];
+            LocationViewController *locationVC = [[LocationViewController alloc]init];
+            [baseVC.navigationController pushViewController:locationVC animated:YES];
             
         }
             
             break;
         case 2:
         {
-            LocationViewController *locationVC = [[LocationViewController alloc]init];
+            ContactsSelectorViewController *locationVC = [[ContactsSelectorViewController alloc]init];
             [baseVC.navigationController pushViewController:locationVC animated:YES];
             
         }
@@ -175,21 +174,23 @@
             break;
         case 3:
         {
-            LocationVC *locationVC = [[LocationVC alloc]init];
-            [baseVC.navigationController pushViewController:locationVC animated:YES];
+            GifPlayViewController *gifVC = [[GifPlayViewController alloc]init];
+            [baseVC.navigationController pushViewController:gifVC animated:YES];
             
         }
             
             break;
         case 4:
         {
-            ContactsSelectorViewController *locationVC = [[ContactsSelectorViewController alloc]init];
-            [baseVC.navigationController pushViewController:locationVC animated:YES];
+
             
         }
             break;
         case 5:
+        {
+
             
+        }
             
             break;
         case 6:

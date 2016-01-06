@@ -9,10 +9,8 @@
 #import "BaseViewController.h"
 #import "AppEngineManager.h"
 #import "AppBaseViewController.h"
-//#import "ContainerViewController.h"
-//#import "AppEngine.h"
-//#import "LeftVCToOthers.h"
-//#import "ViewController.h"
+#import "LocationViewController.h"
+
 @implementation BaseViewController
 
 - (void)viewDidLoad {
@@ -22,7 +20,7 @@
     UIBarButtonItem *leftItem = [[UIBarButtonItem alloc] initWithTitle:nil style:UIBarButtonItemStylePlain target:self action:@selector(home)];
     leftItem.image = [UIImage imageNamed:@"qq@3x"];
     self.navigationItem.leftBarButtonItem = leftItem;
-
+    
 
 }
 - (void)home{
@@ -30,6 +28,7 @@
     NSLog(@"leftBtnClicked");
     [[AppEngineManager sharedInstance].baseViewController leftControllerAppear];
 
-   
 }
+
+
 @end

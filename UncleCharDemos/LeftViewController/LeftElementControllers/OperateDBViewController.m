@@ -38,16 +38,17 @@
 - (void)viewWillAppear:(BOOL)animated {
 
     [super viewWillAppear:YES];
-    self.navigationController.navigationBarHidden = 0;
+    
 }
 
 - (void)viewDidLoad {
     
     self.title = self.navigationTitle;
     self.view.backgroundColor = [UIColor brownColor];
+    self.navigationController.navigationBarHidden = 0;
 
     UIBarButtonItem *leftItem = [[UIBarButtonItem alloc] initWithTitle:nil style:UIBarButtonItemStylePlain target:self action:@selector(backBtn)];
-    leftItem.image = [UIImage imageNamed:@"back_arrow@2x"];
+    leftItem.image = [UIImage imageNamed:@"left@2x"];
     self.navigationItem.leftBarButtonItem = leftItem;
     
     

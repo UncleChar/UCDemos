@@ -48,14 +48,14 @@
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(netStatusDidChanged:) name:kReachabilityChangedNotification object:nil];
     _hostReach = [Reachability reachabilityWithHostName:@"www.google.com"];//可以以多种形式初始化
     [_hostReach startNotifier];  //开始监听,会启动一个run loop
-
-    
-    
-    
+ 
     
     self.window = [[UIWindow alloc]initWithFrame:[UIScreen mainScreen].bounds];
 //    self.window.rootViewController = [[CJNavigationController alloc]initWithRootViewController:[AppEngineManager sharedInstance].baseViewController];
-        self.window.rootViewController = [[UINavigationController alloc]initWithRootViewController:[AppEngineManager sharedInstance].baseViewController];
+    UINavigationController *rootNav = [[UINavigationController alloc]initWithRootViewController:[AppEngineManager sharedInstance].baseViewController];
+
+
+    self.window.rootViewController = rootNav;
 
     [self.window makeKeyAndVisible];
     return YES;

@@ -263,7 +263,7 @@
     _cancelBtn = [UIButton buttonWithType:UIButtonTypeCustom];
     _cancelBtn.frame = CGRectMake(1, 1, self.view.frame.size.width / 2 - 1.5, 48);
     _cancelBtn.backgroundColor = [UIColor whiteColor];
-    _cancelBtn.tag = 9090 + 1;
+    _cancelBtn.tag = 2000 + 1;
     [_cancelBtn setTitle:@"取消" forState:UIControlStateNormal];
     [_cancelBtn addTarget:self action:@selector(btnClickedThis:) forControlEvents:UIControlEventTouchUpInside];
     [_cancelBtn setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
@@ -273,7 +273,7 @@
     _selectedBtn = [UIButton buttonWithType:UIButtonTypeCustom];
     _selectedBtn.frame = CGRectMake(self.view.frame.size.width / 2 + 0.5, 1, self.view.frame.size.width / 2 - 1.5, 48);
     _selectedBtn.backgroundColor = [UIColor whiteColor];
-    _selectedBtn.tag = 9090 + 2;
+    _selectedBtn.tag = 2000 + 2;
     [_selectedBtn setTitle:@"选择" forState:UIControlStateNormal];
     [_selectedBtn addTarget:self action:@selector(btnClickedThis:) forControlEvents:UIControlEventTouchUpInside];
     [_selectedBtn setTitleColor:[UIColor lightGrayColor] forState:UIControlStateNormal];
@@ -754,7 +754,7 @@
 
 - (void)btnClickedThis:(UIButton *)sender {
     
-    NSInteger indexBtn = sender.tag - 9090;
+    NSInteger indexBtn = sender.tag - 2000;
     switch (indexBtn) {
         case 0:
         {
