@@ -116,7 +116,10 @@
     
     UIAlertAction *okAction = [UIAlertAction actionWithTitle:@"好的" style:UIAlertActionStyleDefault handler:^(UIAlertAction *action) {
         UITextField *widthTF = alertController.textFields.firstObject;
-        
+        if ([widthTF.text isEqualToString:@""]) {
+            
+            [self configGifScrollViewWithWidth:28];
+        }
         [self configGifScrollViewWithWidth:[widthTF.text integerValue]];
         
     }];

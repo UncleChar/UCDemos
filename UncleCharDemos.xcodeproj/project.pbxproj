@@ -223,9 +223,6 @@
 		9DC21AAE1C30E83C007DB2A5 /* qr_toolbar_setting_hl@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 9DC21AAC1C30E83C007DB2A5 /* qr_toolbar_setting_hl@2x.png */; };
 		9DC21AAF1C30E83C007DB2A5 /* qr_toolbar_setting@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 9DC21AAD1C30E83C007DB2A5 /* qr_toolbar_setting@2x.png */; };
 		9DC21AB71C30E850007DB2A5 /* 10.png in Resources */ = {isa = PBXBuildFile; fileRef = 9DC21AB11C30E850007DB2A5 /* 10.png */; };
-		9DC21AB81C30E850007DB2A5 /* 11.png in Resources */ = {isa = PBXBuildFile; fileRef = 9DC21AB21C30E850007DB2A5 /* 11.png */; };
-		9DC21ABA1C30E850007DB2A5 /* 4.png in Resources */ = {isa = PBXBuildFile; fileRef = 9DC21AB41C30E850007DB2A5 /* 4.png */; };
-		9DC21ABB1C30E850007DB2A5 /* 7副本.png in Resources */ = {isa = PBXBuildFile; fileRef = 9DC21AB51C30E850007DB2A5 /* 7副本.png */; };
 		9DC21ABC1C30E850007DB2A5 /* 9.png in Resources */ = {isa = PBXBuildFile; fileRef = 9DC21AB61C30E850007DB2A5 /* 9.png */; };
 		9DC21ABE1C30E86B007DB2A5 /* read_bg_tile@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 9DC21ABD1C30E86B007DB2A5 /* read_bg_tile@2x.png */; };
 		9DC22BE91C30EF92007DB2A5 /* ASIAuthenticationDialog.m in Sources */ = {isa = PBXBuildFile; fileRef = 9DC22BD61C30EF92007DB2A5 /* ASIAuthenticationDialog.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
@@ -565,9 +562,6 @@
 		9DC21AAC1C30E83C007DB2A5 /* qr_toolbar_setting_hl@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "qr_toolbar_setting_hl@2x.png"; path = "../qr_toolbar_setting_hl@2x.png"; sourceTree = "<group>"; };
 		9DC21AAD1C30E83C007DB2A5 /* qr_toolbar_setting@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "qr_toolbar_setting@2x.png"; path = "../qr_toolbar_setting@2x.png"; sourceTree = "<group>"; };
 		9DC21AB11C30E850007DB2A5 /* 10.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = 10.png; sourceTree = "<group>"; };
-		9DC21AB21C30E850007DB2A5 /* 11.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = 11.png; sourceTree = "<group>"; };
-		9DC21AB41C30E850007DB2A5 /* 4.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = 4.png; sourceTree = "<group>"; };
-		9DC21AB51C30E850007DB2A5 /* 7副本.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "7副本.png"; sourceTree = "<group>"; };
 		9DC21AB61C30E850007DB2A5 /* 9.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = 9.png; sourceTree = "<group>"; };
 		9DC21ABD1C30E86B007DB2A5 /* read_bg_tile@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "read_bg_tile@2x.png"; sourceTree = "<group>"; };
 		9DC22BD51C30EF92007DB2A5 /* ASIAuthenticationDialog.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ASIAuthenticationDialog.h; sourceTree = "<group>"; };
@@ -1084,9 +1078,6 @@
 				9DBE59FB1C3CAA4F004EFA95 /* WebView_Refresh@2x.png */,
 				9DBE5A011C3CAAA0004EFA95 /* back_arrow@2x.png */,
 				9DC21AB11C30E850007DB2A5 /* 10.png */,
-				9DC21AB21C30E850007DB2A5 /* 11.png */,
-				9DC21AB41C30E850007DB2A5 /* 4.png */,
-				9DC21AB51C30E850007DB2A5 /* 7副本.png */,
 				9DC21AB61C30E850007DB2A5 /* 9.png */,
 				9DB645151C3B91DB00C72C20 /* yes@2x.png */,
 				9DBE5B141C3D0468004EFA95 /* smile_set_nor@2x.png */,
@@ -1465,7 +1456,6 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				9DC21ABB1C30E850007DB2A5 /* 7副本.png in Resources */,
 				9DBE5AD71C3CD773004EFA95 /* 081@2x.gif in Resources */,
 				9DBE5AC01C3CD772004EFA95 /* 058@2x.gif in Resources */,
 				9DBE5A921C3CD772004EFA95 /* 012@2x.gif in Resources */,
@@ -1630,11 +1620,9 @@
 				9DBE5AC91C3CD772004EFA95 /* 067@2x.gif in Resources */,
 				9DBE5B0F1C3D02FA004EFA95 /* qvip_emoji_button_goback@2x.png in Resources */,
 				9DBE5AA51C3CD772004EFA95 /* 031@2x.gif in Resources */,
-				9DC21ABA1C30E850007DB2A5 /* 4.png in Resources */,
 				9DBE5A9B1C3CD772004EFA95 /* 021@2x.gif in Resources */,
 				9DBE5A941C3CD772004EFA95 /* 014@2x.gif in Resources */,
 				9DBE5A881C3CD772004EFA95 /* 002@2x.gif in Resources */,
-				9DC21AB81C30E850007DB2A5 /* 11.png in Resources */,
 				9DBE5AEE1C3CD773004EFA95 /* 104@2x.gif in Resources */,
 				9DBE59FF1C3CAA59004EFA95 /* tabbar_items_3_selected@2x.png in Resources */,
 				9DBE5AF51C3CD773004EFA95 /* aio_combo_5@2x.png in Resources */,

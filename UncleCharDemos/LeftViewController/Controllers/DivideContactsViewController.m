@@ -247,7 +247,7 @@
 
 - (UITableView *)configWithNormalTableView {
     
-    UITableView *tableView = [[UITableView alloc] initWithFrame:CGRectMake(0 , 60, self.view.frame.size.width, self.view.frame.size.height - 60 - 50)
+    UITableView *tableView = [[UITableView alloc] initWithFrame:CGRectMake(0 , 64, self.view.frame.size.width, self.view.frame.size.height - 64 - 50)
                                                           style:UITableViewStylePlain];
     tableView.delegate = self;
     tableView.dataSource = self;

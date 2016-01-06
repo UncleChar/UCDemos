@@ -71,7 +71,7 @@
     emailLabel.font = [UIFont systemFontOfSize:10];
     [self.contentView addSubview:emailLabel];
     
-    sexImg = [[UIImageView alloc]initWithFrame:CGRectMake(self.frame.size.width - (self.frame.size.height / 2 - 7.5 + 15 + 5), self.frame.size.height / 2 - 7.5, 15, 15)];
+    sexImg = [[UIImageView alloc]initWithFrame:CGRectMake(self.contentView.frame.size.width - (self.frame.size.height / 2 - 7.5 + 15 + 5), self.frame.size.height / 2 - 7.5, 15, 15)];
     [self.contentView addSubview:sexImg];
 
 }
