@@ -16,6 +16,7 @@
 @property (nonatomic, strong) NSString  *user_count;
 @property (nonatomic, strong) UserModel *usersAtGroModel;
 @property (nonatomic, assign) BOOL       isSelected;
+@property (nonatomic, strong) NSMutableArray *userModelArrWithGroup;
 
 
 

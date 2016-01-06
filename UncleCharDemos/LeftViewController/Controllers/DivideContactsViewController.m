@@ -78,7 +78,9 @@
     
     
     self.view.backgroundColor = [UIColor whiteColor];
-    
+    UIBarButtonItem *leftItem = [[UIBarButtonItem alloc] initWithTitle:nil style:UIBarButtonItemStylePlain target:self action:@selector(divideBackBtn)];
+    leftItem.image = [UIImage imageNamed:@"left@2x"];
+    self.navigationItem.leftBarButtonItem = leftItem;
  
     [self initNecessaryArray];       //初始化必要的数组
 
@@ -228,6 +230,7 @@
         self.mySearchController = [[UISearchController alloc] initWithSearchResultsController:nil];
         _mySearchController.searchResultsUpdater = self;
         _mySearchController.searchBar.placeholder = @"搜索";
+//        _mySearchController.searchBar.backgroundImage = [UIImage imageNamed:@"condSearch@2x"];
         _mySearchController.dimsBackgroundDuringPresentation = 0;
         _mySearchController.delegate = self;
         [_mySearchController.searchBar sizeToFit];
@@ -929,5 +932,9 @@
     }
 }
 
+- (void)divideBackBtn {
+
+    [self.navigationController popViewControllerAnimated:YES];
+}
 
 @end

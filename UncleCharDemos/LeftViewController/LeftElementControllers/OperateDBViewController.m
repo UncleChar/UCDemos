@@ -46,6 +46,10 @@
     self.title = self.navigationTitle;
     self.view.backgroundColor = [UIColor brownColor];
 
+    UIBarButtonItem *leftItem = [[UIBarButtonItem alloc] initWithTitle:nil style:UIBarButtonItemStylePlain target:self action:@selector(backBtn)];
+    leftItem.image = [UIImage imageNamed:@"back_arrow@2x"];
+    self.navigationItem.leftBarButtonItem = leftItem;
+    
     
     _countOfBtn = 0;
     
@@ -400,7 +404,20 @@
     [alertController addAction:okAction];
 }
 
+- (void)backBtn {
 
+    if (_requestQueue) {
+        
+        [_requestQueue cancelAllOperations];
+        
+        _requestQueue.delegate = nil;
+        
+
+    }
+    
+    [self.navigationController popViewControllerAnimated:YES];
+    
+}
 - (void)dealloc
 {
 //    [_requestQueue clearDelegatesAndCancel];

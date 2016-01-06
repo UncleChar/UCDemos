@@ -57,9 +57,9 @@
 #pragma mark 设置所有的分栏元素项
 - (void)setTabBarItems {
     
-    NSArray *titleArr = @[@"message",@"contacts",@"active"];
-    NSArray *normalImgArr = @[@"items_1@2x",@"items_2@2x",@"items_3@2x"];
-    NSArray *selectedImgArr = @[@"items_1_s@2x",@"items_2_s@2x",@"items_3_s@2x"];
+    NSArray *titleArr = @[@"Chat",@"contacts",@"active"];
+    NSArray *normalImgArr = @[@"tabbar_items_1_normal@2x",@"tabbar_items_2_normal@2x",@"tabbar_items_3_normal@2x"];
+    NSArray *selectedImgArr = @[@"tabbar_items_1_selected@2x",@"tabbar_items_2_selected@2x",@"tabbar_items_3_selected@2x"];
     //循环设置信息
     for (int i = 0; i<3; i++) {
         UIViewController *vc = self.viewControllers[i];

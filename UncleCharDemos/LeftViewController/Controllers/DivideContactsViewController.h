@@ -7,7 +7,9 @@
 //
 
 #import <UIKit/UIKit.h>
+
 typedef void(^catchModelsBlock)(NSMutableArray *modelsArray);
+
 @interface DivideContactsViewController : UIViewController
 
 @property (nonatomic, strong) NSMutableArray *usersModelArray;

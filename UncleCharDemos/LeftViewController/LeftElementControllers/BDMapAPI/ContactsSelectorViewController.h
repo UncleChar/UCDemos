@@ -10,4 +10,8 @@
 
 @interface ContactsSelectorViewController : UIViewController
 
+@property (nonatomic, assign) CGFloat       firstResponderTFMaxY;
+@property (nonatomic, strong) UITextField  *firstResponderTF;
+@property (nonatomic, strong) UIView       *baseView;
+
 @end
