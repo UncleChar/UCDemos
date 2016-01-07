@@ -236,4 +236,12 @@
     
 }
 
+
+- (void)setSelected:(BOOL)selected animated:(BOOL)animated
+{
+//    [super setSelected:YES animated:YES];
+    
+    // Configure the view for the selected state
+}
+
 @end

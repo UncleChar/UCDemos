@@ -7,12 +7,21 @@
 //
 
 #import "UncleCharAppDelegate.h"
+#import "LoginViewController.h"
 #import "AppBaseViewController.h"
 #import "AppEngineManager.h"
 #import "CJNavigationController.h"
 #import "Reachability.h"
 #import "DBManager.h"
 #import <BaiduMapAPI_Map/BMKMapComponent.h>
+
+
+@interface UncleCharAppDelegate ()
+{
+    UIScrollView *_loginScrollView;
+}
+@end
+
 @implementation UncleCharAppDelegate
 
 
@@ -26,17 +35,16 @@
     AppEngineManager *engineManager = [[AppEngineManager alloc]init];
     NSLog(@"AppStart---%@",engineManager.baseViewController);
     
+    
     DBManager *db = [[DBManager sharedDBManager]initDBDirectoryWithPath:engineManager.dirDBSqlite];//打开数据库
-    //创建数据库 userinfo 表
     [db createDBTableWithTableName:@"UserInfo"];
     
     
 //    UIApplication *app=[UIApplication sharedApplication];
 //    app.applicationIconBadgeNumber=123;
-//    
 //    //设置指示器的联网动画
 //    app.networkActivityIndicatorVisible=YES;
-//
+
     _mapManager = [[BMKMapManager alloc]init];
     BOOL ret = [_mapManager start:@"rChGCt4DtWI0XsC56Wnvj7ov" generalDelegate:self];
     if (!ret) {
@@ -49,14 +57,13 @@
     _hostReach = [Reachability reachabilityWithHostName:@"www.google.com"];//可以以多种形式初始化
     [_hostReach startNotifier];  //开始监听,会启动一个run loop
  
+ 
     
     self.window = [[UIWindow alloc]initWithFrame:[UIScreen mainScreen].bounds];
 //    self.window.rootViewController = [[CJNavigationController alloc]initWithRootViewController:[AppEngineManager sharedInstance].baseViewController];
     UINavigationController *rootNav = [[UINavigationController alloc]initWithRootViewController:[AppEngineManager sharedInstance].baseViewController];
-
-
-    self.window.rootViewController = rootNav;
-
+    
+    self.window.rootViewController = [[UINavigationController  alloc]initWithRootViewController:[[LoginViewController alloc]init]];
     [self.window makeKeyAndVisible];
     return YES;
 }
@@ -73,6 +80,13 @@
     // If your application supports background execution, this method is called instead of applicationWillTerminate: when the user quits.
      NSLog(@"Background");
 }
+
+
+//- (BOOL)application:(UIApplication *)application openURL:(NSURL *)url sourceApplication:(NSString *)sourceApplication annotation:(id)annotation{
+//    [[IFlySpeechUtility getUtility] handleOpenURL:url];
+//    return YES;
+//}
+
  // 应用程序即将进入前台的时候调用
  // 一般在该方法中恢复应用程序的数据,以及状态
 - (void)applicationWillEnterForeground:(UIApplication *)application {

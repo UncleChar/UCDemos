@@ -17,4 +17,5 @@
 @property (strong, nonatomic) BMKMapManager *mapManager;
 
 + (UncleCharAppDelegate *)getUncleCharAppDelegateDelegate;
+
 @end

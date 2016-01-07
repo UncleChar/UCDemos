@@ -26,6 +26,7 @@
 @property (nonatomic, strong) NSMutableArray *userModelArr;
 @property (nonatomic, strong) NSMutableArray *grouprModelArr;
 
+
 @end
 
 @implementation ContactsSelectorViewController

@@ -17,7 +17,7 @@
 #import "LocationViewController.h"
 #import "ContactsSelectorViewController.h"
 #import "GifPlayViewController.h"
-
+#import "VoiceRecognitionViewController.h"
 #define kScreenHeight  [UIScreen mainScreen].bounds.size.height
 #define kScreenWidth  [UIScreen mainScreen].bounds.size.width
 
@@ -90,7 +90,7 @@
     
   
     
-    _titleListArray = @[@"数据库测试-[FMDB]", @"MyLocation", @"UserAccount", @"GifPlayer", @"我的", @"我的", @"我的文件"];
+    _titleListArray = @[@"数据库测试-[FMDB]", @"MyLocation", @"UserAccount", @"GifPlayer", @"IflyMSC", @"我的", @"我的文件"];
     
     _listTableView = [[UITableView alloc]initWithFrame:CGRectMake(0, CGRectGetMaxY(_headBackgrooundImg.frame),self.view.frame.size.width, self.view.frame.size.height-_headView.frame.size.height) style:UITableViewStylePlain];
     _listTableView.dataSource = self;
@@ -182,7 +182,8 @@
             break;
         case 4:
         {
-
+            VoiceRecognitionViewController *voiceVC = [[VoiceRecognitionViewController alloc]init];
+            [baseVC.navigationController pushViewController:voiceVC animated:YES];
             
         }
             break;
