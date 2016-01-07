@@ -163,8 +163,8 @@
     
         
         LoginViewController *lo = [[LoginViewController alloc]init];
-        [self.view addSubview:lo.view];
-        [self.view bringSubviewToFront:lo.view];
+        [self.navigationController presentViewController:lo animated:YES completion:nil];
+//        [self.view bringSubviewToFront:lo.view];
 
     
 }
