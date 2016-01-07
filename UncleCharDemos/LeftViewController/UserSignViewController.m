@@ -11,7 +11,6 @@
 
 #define kScreenHeight  [UIScreen mainScreen].bounds.size.height
 #define kScreenWidth  [UIScreen mainScreen].bounds.size.width
-
 @interface UserSignViewController ()
 {
 
@@ -42,6 +41,9 @@
     tf.backgroundColor = [UIColor lightGrayColor];
     [self.view addSubview:tf];
     
+
+    
+    
     
     // Do any additional setup after loading the view.
 }
@@ -54,6 +56,7 @@
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
 }
+
 
 /*
 #pragma mark - Navigation

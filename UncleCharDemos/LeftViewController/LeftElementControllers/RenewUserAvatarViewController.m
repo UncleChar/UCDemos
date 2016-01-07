@@ -7,7 +7,9 @@
 //
 
 #import "RenewUserAvatarViewController.h"
-
+#import "LoginViewController.h"
+#import "AppEngineManager.h"
+#import "LeftViewController.h"
 #define kScreenHeight  [UIScreen mainScreen].bounds.size.height
 #define kScreenWidth  [UIScreen mainScreen].bounds.size.width
 
@@ -55,6 +57,19 @@
     self.userAvatar.image = selfPhoto;
     [self.userAvatar.layer setCornerRadius:CGRectGetHeight([self.userAvatar bounds]) / 2];
     self.userAvatar.layer.masksToBounds = YES;
+    
+    
+    UIButton *exitBtn = [[UIButton alloc]initWithFrame:CGRectMake(10, 250, 80, 40)];
+    exitBtn.backgroundColor = [UIColor redColor];
+    [exitBtn setTitle:@"Exit" forState:UIControlStateNormal];
+    [exitBtn setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
+    exitBtn.layer.cornerRadius = 6;
+    exitBtn.layer.masksToBounds = 1;
+    exitBtn.tag = 100 + 1;
+    [self.view addSubview:exitBtn];
+    [exitBtn addTarget:self action:@selector(exitBtnClicked) forControlEvents:UIControlEventTouchUpInside];
+    
+    
 
 }
 //从相册获取图片
@@ -139,6 +154,20 @@
     return newImage;
 }
 
+
+- (void)exitBtnClicked {
+    
+    
+////    [self.navigationController pushViewController:[[LoginViewController alloc]init] animated:YES];
+//    [self.navigationController popToRootViewControllerAnimated:YES];
+    
+        
+        LoginViewController *lo = [[LoginViewController alloc]init];
+        [self.view addSubview:lo.view];
+        [self.view bringSubviewToFront:lo.view];
+
+    
+}
 
 //#pragma mark -
 //#pragma mark UIImagePickerControllerDelegate methods

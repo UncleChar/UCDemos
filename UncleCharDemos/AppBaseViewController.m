@@ -42,6 +42,7 @@
     
     [super viewDidLoad];
 
+    NSLog(@"kkkk-------%@",[UIApplication sharedApplication].windows);
     self.view.backgroundColor = [UIColor whiteColor];
     
     [self initControllers];
@@ -88,6 +89,7 @@
     [baseView addGestureRecognizer:self.panGesture];
 
     self.tapGesture = [[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(homeControllerAppear)];
+    
     
 }
 

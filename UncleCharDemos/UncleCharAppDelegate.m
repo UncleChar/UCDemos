@@ -60,10 +60,16 @@
  
     
     self.window = [[UIWindow alloc]initWithFrame:[UIScreen mainScreen].bounds];
-//    self.window.rootViewController = [[CJNavigationController alloc]initWithRootViewController:[AppEngineManager sharedInstance].baseViewController];
-    UINavigationController *rootNav = [[UINavigationController alloc]initWithRootViewController:[AppEngineManager sharedInstance].baseViewController];
+    UINavigationController *rootNav;
+    if ([[NSUserDefaults standardUserDefaults]boolForKey:@"isLoginSuccess"]) {
+        
+        rootNav = [[UINavigationController alloc]initWithRootViewController:[AppEngineManager sharedInstance].baseViewController];
+    }else {
     
-    self.window.rootViewController = [[UINavigationController  alloc]initWithRootViewController:[[LoginViewController alloc]init]];
+        rootNav = [[UINavigationController  alloc]initWithRootViewController:[[LoginViewController alloc]init]];
+        
+    }
+    self.window.rootViewController = rootNav;
     [self.window makeKeyAndVisible];
     return YES;
 }

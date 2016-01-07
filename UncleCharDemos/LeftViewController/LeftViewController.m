@@ -29,7 +29,8 @@
 @property (nonatomic, strong) UIImageView  *headBackgrooundImg;
 @property (nonatomic, strong) UIImageView  *headImgView;
 @property (nonatomic, strong) UILabel      *nameLabel;
-@property (nonatomic, strong) UILabel     *signNameLabel;
+@property (nonatomic, strong) UILabel      *signNameLabel;
+@property (nonatomic, strong) UIView       *bottomView;
 
 @end
 
@@ -92,14 +93,31 @@
     
     _titleListArray = @[@"数据库测试-[FMDB]", @"MyLocation", @"UserAccount", @"GifPlayer", @"IflyMSC", @"我的", @"我的文件"];
     
-    _listTableView = [[UITableView alloc]initWithFrame:CGRectMake(0, CGRectGetMaxY(_headBackgrooundImg.frame),self.view.frame.size.width, self.view.frame.size.height-_headView.frame.size.height) style:UITableViewStylePlain];
+    _listTableView = [[UITableView alloc]initWithFrame:CGRectMake(0, CGRectGetMaxY(_headBackgrooundImg.frame),self.view.frame.size.width, self.view.frame.size.height-_headView.frame.size.height - self.view.frame.size.height / 8) style:UITableViewStylePlain];
+    _listTableView.separatorStyle = UITableViewCellSeparatorStyleNone;
     _listTableView.dataSource = self;
     _listTableView.delegate = self;
     _listTableView.backgroundColor = [UIColor colorWithRed:30.0/255 green:200.0/255 blue:249.0/255 alpha:1];
     _listTableView.alpha = 0.9;
-    _listTableView.layer.cornerRadius = 5;
-    _listTableView.layer.masksToBounds = 1;
+//    _listTableView.layer.cornerRadius = 5;
+//    _listTableView.layer.masksToBounds = 1;
     [self.view addSubview:_listTableView];
+    
+    
+    _bottomView = [[UIView alloc]initWithFrame:CGRectMake(0, self.view.frame.size.height * 7 / 8, self.view.frame.size.width, self.view.frame.size.height  / 8)];
+    _bottomView.backgroundColor = [UIColor colorWithRed:30.0/255 green:200.0/255 blue:100.0/255 alpha:1];
+    _bottomView.alpha = 0.9;
+    [self.view addSubview:_bottomView];
+    
+   UIButton *exitBtn = [[UIButton alloc]initWithFrame:CGRectMake(10, 10, 80, 40)];
+    exitBtn.backgroundColor = [UIColor whiteColor];
+    [exitBtn setTitle:@"Exit" forState:UIControlStateNormal];
+    [exitBtn setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
+    exitBtn.layer.cornerRadius = 6;
+    exitBtn.layer.masksToBounds = 1;
+    exitBtn.tag = 100 + 1;
+    [_bottomView addSubview:exitBtn];
+    [exitBtn addTarget:self action:@selector(exitBtnClicked) forControlEvents:UIControlEventTouchUpInside];
     
 }
 
@@ -262,7 +280,13 @@
 
 
 
+- (void)exitBtnClicked {
 
+//    AppBaseViewController *baseVC = [AppEngineManager sharedInstance].baseViewController;
+//    [baseVC homeControllerAppear];
+//
+//    [baseVC.navigationController popViewControllerAnimated:YES];
+}
 
 
 

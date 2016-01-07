@@ -31,6 +31,8 @@
 @property (nonatomic, strong) NSMutableArray  *showDataArray;
 @property (nonatomic, strong) NSMutableArray  *showDataForImgArray;
 @property (nonatomic, assign) NSInteger        countOfBtn;
+@property (nonatomic, strong) UIButton        *leftBtn;
+@property (nonatomic, strong) UIButton        *rightBtn;
 @end
 
 @implementation OperateDBViewController
@@ -96,12 +98,7 @@
     
 
     
-    UIButton *leftBtn = [UIButton buttonWithType:UIButtonTypeCustom];
-    leftBtn.tag = 1000 + 7;
-    leftBtn.frame = CGRectMake(CGRectGetMinX(_imageFromNetwork.frame), CGRectGetMaxY(_imageFromNetwork.frame) + 10, 20, 30);
-    [leftBtn setBackgroundImage:[UIImage imageNamed:@"left"] forState:UIControlStateNormal];
-    [leftBtn addTarget:self action:@selector(btnClicked:) forControlEvents:UIControlEventTouchUpInside];
-    [self.view addSubview:leftBtn];
+   
     
     UIButton *showImgBtn = [ConfigUITools configButtonWithTitle:@"SHOW" color:kBtnColor fontSize:14 frame:CGRectMake(CGRectGetMinX(_imageFromNetwork.frame) + _imageFromNetwork.frame.size.width / 2 - 30,CGRectGetMaxY(_imageFromNetwork.frame)+ 10,60,30) superView:self.view];
     showImgBtn.tag = 1000 + 8;
@@ -109,13 +106,21 @@
     [showImgBtn addTarget:self action:@selector(btnClicked:) forControlEvents:UIControlEventTouchUpInside];
     showImgBtn.center = CGPointMake(_imageFromNetwork.center.x, centerY);
     
+    _leftBtn = [UIButton buttonWithType:UIButtonTypeCustom];
+    _leftBtn.tag = 1000 + 7;
+    _leftBtn.enabled = NO;
+    _leftBtn.frame = CGRectMake(CGRectGetMinX(_imageFromNetwork.frame), CGRectGetMaxY(_imageFromNetwork.frame) + 10, 20, 30);
+    [_leftBtn setBackgroundImage:[UIImage imageNamed:@"left"] forState:UIControlStateNormal];
+    [_leftBtn addTarget:self action:@selector(btnClicked:) forControlEvents:UIControlEventTouchUpInside];
+    [self.view addSubview:_leftBtn];
     
-    UIButton *rigthBtn = [UIButton buttonWithType:UIButtonTypeCustom];
-    rigthBtn.tag = 1000 + 9;
-    rigthBtn.frame = CGRectMake(CGRectGetMaxX(_imageFromNetwork.frame) - 20, CGRectGetMaxY(_imageFromNetwork.frame) + 10, 20, 30);
-    [rigthBtn setBackgroundImage:[UIImage imageNamed:@"right"] forState:UIControlStateNormal];
-    [rigthBtn addTarget:self action:@selector(btnClicked:) forControlEvents:UIControlEventTouchUpInside];
-    [self.view addSubview:rigthBtn];
+    _rightBtn = [UIButton buttonWithType:UIButtonTypeCustom];
+    _rightBtn.tag = 1000 + 9;
+    _rightBtn.enabled = NO;
+    _rightBtn.frame = CGRectMake(CGRectGetMaxX(_imageFromNetwork.frame) - 20, CGRectGetMaxY(_imageFromNetwork.frame) + 10, 20, 30);
+    [_rightBtn setBackgroundImage:[UIImage imageNamed:@"right"] forState:UIControlStateNormal];
+    [_rightBtn addTarget:self action:@selector(btnClicked:) forControlEvents:UIControlEventTouchUpInside];
+    [self.view addSubview:_rightBtn];
     
 //    UIButton *refreshBtn = [ConfigUITools configButtonWithTitle:@"刷新读缓存" color:[UIColor grayColor] fontSize:14 frame:CGRectMake(SCREEN_WIDTH / 2 + 10, 360, 90, 40) superView:self.view];
 //    refreshBtn.tag = 100 + 8;
@@ -147,7 +152,7 @@
     [deleteAllBtn addTarget:self action:@selector(btnClicked:) forControlEvents:UIControlEventTouchUpInside];
     
     
-    _showDataTableView = [[UITableView alloc]initWithFrame:CGRectMake(CGRectGetMinX(_imageFromNetwork.frame) - 10, CGRectGetMaxY(leftBtn.frame) + 10, _imageFromNetwork.frame.size.width + 20, kScreenHeight - CGRectGetMaxY(leftBtn.frame) - 10)];
+    _showDataTableView = [[UITableView alloc]initWithFrame:CGRectMake(CGRectGetMinX(_imageFromNetwork.frame) - 10, CGRectGetMaxY(_leftBtn.frame) + 10, _imageFromNetwork.frame.size.width + 20, kScreenHeight - CGRectGetMaxY(_leftBtn.frame) - 10)];
     _showDataTableView.delegate = self;
     _showDataTableView.dataSource = self;
     [self.view addSubview:_showDataTableView];
@@ -270,20 +275,18 @@
                 
             case 7:
             {
-                if (_countOfBtn == 0) {
+                if (_showDataArray.count > 0) {
                     
-                    _countOfBtn = _showDataForImgArray.count;
+                    if (_countOfBtn == 0) {
+                        
+                        _countOfBtn = _showDataForImgArray.count;
+                    }
+                    _countOfBtn --;
+                    
+                    
+                    _imageFromNetwork.image = [UIImage imageWithData:[_showDataForImgArray[_countOfBtn] biggerData]];
                 }
-                _countOfBtn --;
-                
-                
-//                if (labs(_countOfBtn) >= _showDataForImgArray.count) {
-//                    
-//                    _countOfBtn = 0;
-//                }
-                
-                
-                _imageFromNetwork.image = [UIImage imageWithData:[_showDataForImgArray[_countOfBtn] biggerData]];
+               
                 
                 
                 
@@ -301,19 +304,25 @@
                 //                }
                 _showDataForImgArray = (NSMutableArray *)allDataArray;
                 
-                
+                _rightBtn.enabled = 1;
+                _leftBtn.enabled  = 1;
                 
             }
                 break;
             case 9:
             {
-                _countOfBtn ++;
-                if (_countOfBtn >= _showDataForImgArray.count) {
+                if (_showDataArray.count > 0) {
+                  
+                    _countOfBtn ++;
+                    if (_countOfBtn >= _showDataForImgArray.count) {
+                        
+                        _countOfBtn = 0;
+                    }
                     
-                    _countOfBtn = 0;
+                    _imageFromNetwork.image = [UIImage imageWithData:[_showDataForImgArray[_countOfBtn] biggerData]];
+                    
                 }
 
-                _imageFromNetwork.image = [UIImage imageWithData:[_showDataForImgArray[_countOfBtn] biggerData]];
                 
                 
             }

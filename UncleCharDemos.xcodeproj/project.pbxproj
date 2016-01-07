@@ -32,6 +32,7 @@
 		9DAD343E1C3E43B800604744 /* SVProgressHUD.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 9DAD34381C3E43B800604744 /* SVProgressHUD.bundle */; };
 		9DAD343F1C3E43B800604744 /* SVProgressHUD.m in Sources */ = {isa = PBXBuildFile; fileRef = 9DAD343A1C3E43B800604744 /* SVProgressHUD.m */; };
 		9DAD34401C3E43B800604744 /* SVRadialGradientLayer.m in Sources */ = {isa = PBXBuildFile; fileRef = 9DAD343C1C3E43B800604744 /* SVRadialGradientLayer.m */; };
+		9DAD34421C3E4ED800604744 /* login_head.gif in Resources */ = {isa = PBXBuildFile; fileRef = 9DAD34411C3E4ED800604744 /* login_head.gif */; };
 		9DB644FA1C3B8CD500C72C20 /* ContactsSelectorViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9DB644F91C3B8CD500C72C20 /* ContactsSelectorViewController.m */; };
 		9DB645001C3B8EE600C72C20 /* contacts_add@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 9DB644FF1C3B8EE600C72C20 /* contacts_add@2x.png */; };
 		9DB645021C3B8F4600C72C20 /* Index.png in Resources */ = {isa = PBXBuildFile; fileRef = 9DB645011C3B8F4600C72C20 /* Index.png */; };
@@ -235,9 +236,6 @@
 		9DC21AAE1C30E83C007DB2A5 /* qr_toolbar_setting_hl@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 9DC21AAC1C30E83C007DB2A5 /* qr_toolbar_setting_hl@2x.png */; };
 		9DC21AAF1C30E83C007DB2A5 /* qr_toolbar_setting@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 9DC21AAD1C30E83C007DB2A5 /* qr_toolbar_setting@2x.png */; };
 		9DC21AB71C30E850007DB2A5 /* 10.png in Resources */ = {isa = PBXBuildFile; fileRef = 9DC21AB11C30E850007DB2A5 /* 10.png */; };
-		9DC21AB81C30E850007DB2A5 /* 11.png in Resources */ = {isa = PBXBuildFile; fileRef = 9DC21AB21C30E850007DB2A5 /* 11.png */; };
-		9DC21ABA1C30E850007DB2A5 /* 4.png in Resources */ = {isa = PBXBuildFile; fileRef = 9DC21AB41C30E850007DB2A5 /* 4.png */; };
-		9DC21ABB1C30E850007DB2A5 /* 7副本.png in Resources */ = {isa = PBXBuildFile; fileRef = 9DC21AB51C30E850007DB2A5 /* 7副本.png */; };
 		9DC21ABC1C30E850007DB2A5 /* 9.png in Resources */ = {isa = PBXBuildFile; fileRef = 9DC21AB61C30E850007DB2A5 /* 9.png */; };
 		9DC21ABE1C30E86B007DB2A5 /* read_bg_tile@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 9DC21ABD1C30E86B007DB2A5 /* read_bg_tile@2x.png */; };
 		9DC22BE91C30EF92007DB2A5 /* ASIAuthenticationDialog.m in Sources */ = {isa = PBXBuildFile; fileRef = 9DC22BD61C30EF92007DB2A5 /* ASIAuthenticationDialog.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
@@ -377,6 +375,7 @@
 		9DAD343A1C3E43B800604744 /* SVProgressHUD.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SVProgressHUD.m; sourceTree = "<group>"; };
 		9DAD343B1C3E43B800604744 /* SVRadialGradientLayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SVRadialGradientLayer.h; sourceTree = "<group>"; };
 		9DAD343C1C3E43B800604744 /* SVRadialGradientLayer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SVRadialGradientLayer.m; sourceTree = "<group>"; };
+		9DAD34411C3E4ED800604744 /* login_head.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = login_head.gif; sourceTree = "<group>"; };
 		9DB644F81C3B8CD500C72C20 /* ContactsSelectorViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ContactsSelectorViewController.h; path = ../LeftElementControllers/BDMapAPI/ContactsSelectorViewController.h; sourceTree = "<group>"; };
 		9DB644F91C3B8CD500C72C20 /* ContactsSelectorViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ContactsSelectorViewController.m; path = ../LeftElementControllers/BDMapAPI/ContactsSelectorViewController.m; sourceTree = "<group>"; };
 		9DB644FF1C3B8EE600C72C20 /* contacts_add@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "contacts_add@2x.png"; sourceTree = "<group>"; };
@@ -596,9 +595,6 @@
 		9DC21AAC1C30E83C007DB2A5 /* qr_toolbar_setting_hl@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "qr_toolbar_setting_hl@2x.png"; path = "../qr_toolbar_setting_hl@2x.png"; sourceTree = "<group>"; };
 		9DC21AAD1C30E83C007DB2A5 /* qr_toolbar_setting@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "qr_toolbar_setting@2x.png"; path = "../qr_toolbar_setting@2x.png"; sourceTree = "<group>"; };
 		9DC21AB11C30E850007DB2A5 /* 10.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = 10.png; sourceTree = "<group>"; };
-		9DC21AB21C30E850007DB2A5 /* 11.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = 11.png; sourceTree = "<group>"; };
-		9DC21AB41C30E850007DB2A5 /* 4.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = 4.png; sourceTree = "<group>"; };
-		9DC21AB51C30E850007DB2A5 /* 7副本.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "7副本.png"; sourceTree = "<group>"; };
 		9DC21AB61C30E850007DB2A5 /* 9.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = 9.png; sourceTree = "<group>"; };
 		9DC21ABD1C30E86B007DB2A5 /* read_bg_tile@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "read_bg_tile@2x.png"; sourceTree = "<group>"; };
 		9DC22BD51C30EF92007DB2A5 /* ASIAuthenticationDialog.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ASIAuthenticationDialog.h; sourceTree = "<group>"; };
@@ -868,6 +864,7 @@
 		9DB644FD1C3B8E6700C72C20 /* BaseVCimg */ = {
 			isa = PBXGroup;
 			children = (
+				9DAD34411C3E4ED800604744 /* login_head.gif */,
 				DBDE27D21C2FAFD000D10851 /* icon.png */,
 				DB167AEC1C2D7CCE00AE61DB /* WeakUp.jpg */,
 				DB167AEA1C2D7B7900AE61DB /* backk.jpg */,
@@ -1144,9 +1141,6 @@
 				9DBE59FB1C3CAA4F004EFA95 /* WebView_Refresh@2x.png */,
 				9DBE5A011C3CAAA0004EFA95 /* back_arrow@2x.png */,
 				9DC21AB11C30E850007DB2A5 /* 10.png */,
-				9DC21AB21C30E850007DB2A5 /* 11.png */,
-				9DC21AB41C30E850007DB2A5 /* 4.png */,
-				9DC21AB51C30E850007DB2A5 /* 7副本.png */,
 				9DC21AB61C30E850007DB2A5 /* 9.png */,
 				9DB645151C3B91DB00C72C20 /* yes@2x.png */,
 				9DBE5B141C3D0468004EFA95 /* smile_set_nor@2x.png */,
@@ -1529,7 +1523,6 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				9DC21ABB1C30E850007DB2A5 /* 7副本.png in Resources */,
 				9DBE5AD71C3CD773004EFA95 /* 081@2x.gif in Resources */,
 				9DBE5AC01C3CD772004EFA95 /* 058@2x.gif in Resources */,
 				9DBE5A921C3CD772004EFA95 /* 012@2x.gif in Resources */,
@@ -1695,11 +1688,9 @@
 				9DBE5AC91C3CD772004EFA95 /* 067@2x.gif in Resources */,
 				9DBE5B0F1C3D02FA004EFA95 /* qvip_emoji_button_goback@2x.png in Resources */,
 				9DBE5AA51C3CD772004EFA95 /* 031@2x.gif in Resources */,
-				9DC21ABA1C30E850007DB2A5 /* 4.png in Resources */,
 				9DBE5A9B1C3CD772004EFA95 /* 021@2x.gif in Resources */,
 				9DBE5A941C3CD772004EFA95 /* 014@2x.gif in Resources */,
 				9DBE5A881C3CD772004EFA95 /* 002@2x.gif in Resources */,
-				9DC21AB81C30E850007DB2A5 /* 11.png in Resources */,
 				9DBE5AEE1C3CD773004EFA95 /* 104@2x.gif in Resources */,
 				9DBE59FF1C3CAA59004EFA95 /* tabbar_items_3_selected@2x.png in Resources */,
 				9DBE5AF51C3CD773004EFA95 /* aio_combo_5@2x.png in Resources */,
@@ -1730,6 +1721,7 @@
 				9DBE5ADE1C3CD773004EFA95 /* 088@2x.gif in Resources */,
 				9DBE5AC41C3CD772004EFA95 /* 062@2x.gif in Resources */,
 				9DBE5A981C3CD772004EFA95 /* 018@2x.gif in Resources */,
+				9DAD34421C3E4ED800604744 /* login_head.gif in Resources */,
 				9DBE5A9F1C3CD772004EFA95 /* 025@2x.gif in Resources */,
 				9DBE5A8B1C3CD772004EFA95 /* 005@2x.gif in Resources */,
 				9DBE5AE31C3CD773004EFA95 /* 093@2x.gif in Resources */,
@@ -1971,7 +1963,7 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = NO;
 				GCC_PREFIX_HEADER = "";
 				INFOPLIST_FILE = UncleCharDemos/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 9.1;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.3;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.xhl.UncleCharDemos;
 				PRODUCT_NAME = UncleChar;
@@ -1991,7 +1983,7 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = NO;
 				GCC_PREFIX_HEADER = "";
 				INFOPLIST_FILE = UncleCharDemos/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 9.1;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.3;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.xhl.UncleCharDemos;
 				PRODUCT_NAME = UncleChar;
