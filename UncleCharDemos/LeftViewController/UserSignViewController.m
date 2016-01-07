@@ -50,6 +50,7 @@
 - (void)saveSign {
 
     [[NSUserDefaults standardUserDefaults]setObject:tf.text forKey:@"userSign"];
+    [self.navigationController popViewControllerAnimated:YES];
 
 }
 - (void)didReceiveMemoryWarning {

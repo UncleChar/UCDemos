@@ -109,7 +109,7 @@
     _bottomView.alpha = 0.9;
     [self.view addSubview:_bottomView];
     
-<<<<<<< HEAD
+
    UIButton *exitBtn = [[UIButton alloc]initWithFrame:CGRectMake(10, 10, 80, 40)];
     exitBtn.backgroundColor = [UIColor whiteColor];
     [exitBtn setTitle:@"Exit" forState:UIControlStateNormal];
@@ -119,9 +119,7 @@
     exitBtn.tag = 100 + 1;
     [_bottomView addSubview:exitBtn];
     [exitBtn addTarget:self action:@selector(exitBtnClicked) forControlEvents:UIControlEventTouchUpInside];
-=======
->>>>>>> 195ef97d837767eaff31519b1b33974f5c071f39
-    
+   
 }
 
 - (void)addTargetWithTapGesture {

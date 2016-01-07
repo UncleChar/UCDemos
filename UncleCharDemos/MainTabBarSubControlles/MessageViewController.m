@@ -10,7 +10,8 @@
 #import "AppBaseViewController.h"
 #import "LocationViewController.h"
 #import "AppEngineManager.h"
-
+#import "ConfigUITools.h"
+   
 @interface MessageViewController ()
 
 {
@@ -24,7 +25,7 @@
     
      [super viewDidLoad];
    
-    self.view.backgroundColor = [UIColor whiteColor];
+    self.view.backgroundColor = [ConfigUITools colorRandomly];
     self.title = @"MESSAGE";
 
     UIBarButtonItem *rightItem = [[UIBarButtonItem alloc] initWithTitle:nil style:UIBarButtonItemStylePlain target:self action:@selector(LocationVC)];

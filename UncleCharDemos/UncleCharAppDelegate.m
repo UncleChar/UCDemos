@@ -57,7 +57,6 @@
     _hostReach = [Reachability reachabilityWithHostName:@"www.google.com"];//可以以多种形式初始化
     [_hostReach startNotifier];  //开始监听,会启动一个run loop
  
- 
     
     self.window = [[UIWindow alloc]initWithFrame:[UIScreen mainScreen].bounds];
     UINavigationController *rootNav;

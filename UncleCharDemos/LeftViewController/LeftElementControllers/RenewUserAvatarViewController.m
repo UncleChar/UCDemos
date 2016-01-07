@@ -161,10 +161,13 @@
 ////    [self.navigationController pushViewController:[[LoginViewController alloc]init] animated:YES];
 //    [self.navigationController popToRootViewControllerAnimated:YES];
     
-        
+        NSUserDefaults *store = [NSUserDefaults standardUserDefaults];
+        [store setBool:NO forKey:@"isLoginSuccess"];
+        [store synchronize];
+    
         LoginViewController *lo = [[LoginViewController alloc]init];
         [self.navigationController presentViewController:lo animated:YES completion:nil];
-//        [self.view bringSubviewToFront:lo.view];
+
 
     
 }

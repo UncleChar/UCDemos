@@ -78,6 +78,7 @@
             _userPassword.backgroundColor = [UIColor whiteColor];
             _userPassword.placeholder = @"Password";
             _userPassword.clearButtonMode = UITextFieldViewModeWhileEditing;
+            _userPassword.secureTextEntry = YES;
 
             _registerBtn = [[UIButton alloc]init];
             _registerBtn.backgroundColor = [ConfigUITools colorRandomly];
@@ -199,8 +200,7 @@
                     
                     if ([_userAccount.text isEqualToString:@"123456"] && [_userPassword.text isEqualToString:@"123456"]) {
                         
-                        [SVProgressHUD showSuccessWithStatus:@"Success"];
-
+//                        [SVProgressHUD showSuccessWithStatus:@"Success"];
                         
                         UINavigationController *rootNav = [[UINavigationController alloc]initWithRootViewController:[AppEngineManager sharedInstance].baseViewController];
                         [UncleCharAppDelegate getUncleCharAppDelegateDelegate].window.rootViewController = rootNav;
