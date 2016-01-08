@@ -22,6 +22,8 @@
 @property (nonatomic, strong) NSString                  *dirTemp;
 @property (nonatomic, strong) NSString                  *dirDBSqlite;
 
+@property (nonatomic, strong) NSString                  *leftViewElementsPath;
+
 + (instancetype)sharedInstance;
 
 /**
@@ -32,4 +34,8 @@
  *  @param directory 写入的目标目录
  */
 - (void)writeDataToDirectoryWithData:(NSData *)data fileNameForData:(NSString *)fileName underSuperDirecotry:(NSString *)directory;
+
+- (void)createSubDirectoryName:(NSString *)subDirectoryName underSuperDirectory:(NSString *)superDirectory;
+
+- (void)baseViewControllerPushViewController:(UIViewController *)targetViewController animated:(BOOL)animated;
 @end

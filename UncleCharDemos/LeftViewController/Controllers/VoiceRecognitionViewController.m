@@ -7,7 +7,6 @@
 //
 
 #import "VoiceRecognitionViewController.h"
-#import "ConfigUITools.h"
 #import <QuartzCore/QuartzCore.h>
 #import <AVFoundation/AVAudioSession.h>
 #import <AudioToolbox/AudioSession.h>
@@ -16,6 +15,7 @@
 #import "iflyMSC/IFlySpeechSynthesizer.h"
 #import "iflyMSC/IFlySpeechRecognizer.h"
 #import "iflyMSC/IFlySpeechError.h"
+
 @interface VoiceRecognitionViewController ()<IFlySpeechSynthesizerDelegate,IFlySpeechRecognizerDelegate>
 {
 

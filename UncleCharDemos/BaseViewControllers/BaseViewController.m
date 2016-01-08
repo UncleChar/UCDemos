@@ -7,8 +7,6 @@
 //
 
 #import "BaseViewController.h"
-#import "AppEngineManager.h"
-#import "AppBaseViewController.h"
 #import "LocationViewController.h"
 
 @implementation BaseViewController

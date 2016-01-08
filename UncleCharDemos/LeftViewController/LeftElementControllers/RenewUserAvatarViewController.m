@@ -8,14 +8,30 @@
 
 #import "RenewUserAvatarViewController.h"
 #import "LoginViewController.h"
-#import "AppEngineManager.h"
 #import "LeftViewController.h"
-#define kScreenHeight  [UIScreen mainScreen].bounds.size.height
-#define kScreenWidth  [UIScreen mainScreen].bounds.size.width
+#import "UncleCharAppDelegate.h"
+
+
 
 @interface RenewUserAvatarViewController ()<UIImagePickerControllerDelegate,UINavigationControllerDelegate>
 @property(nonatomic, strong) UIImageView *userAvatar;
 @property(nonatomic, strong) NSData *fileData;
+
+
+@property (nonatomic, strong) UITextField  *userAccount;
+@property (nonatomic, strong) UITextField  *userPassword;
+//@property (nonatomic, strong) UITextField  *userPhone;
+//@property (nonatomic, strong) UITextField  *userEmail;
+
+@property (nonatomic, strong) UITextField  *firstResponderTF;
+@property (nonatomic, strong) UIButton     *loginBtn;
+@property (nonatomic, strong) UIButton     *registerBtn;
+@property (nonatomic, strong) UIView       *baseView;
+
+@property (nonatomic, strong) UIImageView    *loginHeadImg;
+
+@property (nonatomic, assign) CGFloat       btnMaxY;
+
 
 @end
 @implementation RenewUserAvatarViewController
@@ -29,29 +45,20 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    self.view.backgroundColor = [UIColor whiteColor];
+    self.view.backgroundColor = [ConfigUITools colorRandomly];
     self.userAvatar = [[UIImageView alloc] initWithFrame:CGRectMake(kScreenWidth / 2 - 50 , 100, 100, 100)];
     UIBarButtonItem *left = [[UIBarButtonItem alloc] initWithTitle:@"修改头像" style:UIBarButtonItemStylePlain target:self action:@selector(takePictureClick:)];
     self.navigationItem.rightBarButtonItem = left;
     [self.view addSubview:self.userAvatar];
-    
-    
-    NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
-    NSString *documentsDirectory = [paths objectAtIndex:0];
 
-    NSFileManager *fileManager = [NSFileManager defaultManager];
-    NSString *testDirectory = [documentsDirectory stringByAppendingPathComponent:@"LeftVCElements"];
-    // 创建目录
-    BOOL res=[fileManager createDirectoryAtPath:testDirectory withIntermediateDirectories:YES attributes:nil error:nil];
-    if (res) {
-        NSLog(@"文件夹-创建成功");
-       
-    }else{
-        NSLog(@"文件夹-创建失败");
+    if (nil == [AppEngineManager sharedInstance].leftViewElementsPath) {
+        
+        [[AppEngineManager sharedInstance] createSubDirectoryName:kAvatarImgFloderName underSuperDirectory:[AppEngineManager sharedInstance].dirDocument];
+            NSLog(@"headImageFile-->%@",[AppEngineManager sharedInstance].leftViewElementsPath);
     }
 
-    NSString *imageFilePath = [testDirectory stringByAppendingPathComponent:@"/userAvatar.jpg"];
-    NSLog(@"imageFile->>%@",imageFilePath);
+    NSString *imageFilePath = [[AppEngineManager sharedInstance].leftViewElementsPath stringByAppendingPathComponent:@"/userAvatar.jpg"];
+
     
     UIImage *selfPhoto = [UIImage imageWithContentsOfFile:imageFilePath];//
     self.userAvatar.image = selfPhoto;
@@ -59,11 +66,12 @@
     self.userAvatar.layer.masksToBounds = YES;
     
     
-    UIButton *exitBtn = [[UIButton alloc]initWithFrame:CGRectMake(10, 250, 80, 40)];
+    UIButton *exitBtn = [[UIButton alloc]initWithFrame:CGRectMake(self.view.frame.size.width / 2 - 100, self.view.frame.size.height - 80, 200, 40)];
     exitBtn.backgroundColor = [UIColor redColor];
-    [exitBtn setTitle:@"Exit" forState:UIControlStateNormal];
-    [exitBtn setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
-    exitBtn.layer.cornerRadius = 6;
+    [exitBtn setTitle:@"Exit login" forState:UIControlStateNormal];
+    exitBtn.titleLabel.textAlignment = 1;
+    [exitBtn setTitleColor:[ConfigUITools colorRandomly] forState:UIControlStateNormal];
+    exitBtn.layer.cornerRadius = 5;
     exitBtn.layer.masksToBounds = 1;
     exitBtn.tag = 100 + 1;
     [self.view addSubview:exitBtn];
@@ -101,7 +109,6 @@
     [alert addAction:localAction];
     [alert addAction:cancelAction];
 
-    
 }
 
 #pragma mark -
@@ -127,18 +134,14 @@
     NSFileManager *fileManager = [NSFileManager defaultManager];
     NSError *error;
     
-    NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
-    NSString *documentsDirectory = [paths objectAtIndex:0];
+    NSString *imageFilePath = [[AppEngineManager sharedInstance].leftViewElementsPath stringByAppendingPathComponent:@"/userAvatar.jpg"];
 
-    NSString *imageFilePath = [documentsDirectory stringByAppendingPathComponent:@"LeftVCElements/userAvatar.jpg"];
-
-      NSLog(@"imageFile->>%@",imageFilePath);
     success = [fileManager fileExistsAtPath:imageFilePath];
     if(success) {
         success = [fileManager removeItemAtPath:imageFilePath error:&error];
     }
-    //    UIImage *smallImage=[self scaleFromImage:image toSize:CGSizeMake(80.0f, 80.0f)];//将图片尺寸改为80*80
-    UIImage *smallImage = [self thumbnailWithImageWithoutScale:image size:CGSizeMake(93, 93)];
+    //UIImage *smallImage=[self scaleFromImage:image toSize:CGSizeMake(80.0f, 80.0f)];//将图片尺寸改为80*80
+    UIImage *smallImage = [self thumbnailWithImageWithoutScale:image size:CGSizeMake(100, 100)];
     [UIImageJPEGRepresentation(smallImage, 1.0f) writeToFile:imageFilePath atomically:YES];//写入文件
     self.userAvatar.image = [UIImage imageWithContentsOfFile:imageFilePath];//读取图片文件
     
@@ -158,17 +161,18 @@
 - (void)exitBtnClicked {
     
     
-////    [self.navigationController pushViewController:[[LoginViewController alloc]init] animated:YES];
-//    [self.navigationController popToRootViewControllerAnimated:YES];
-    
         NSUserDefaults *store = [NSUserDefaults standardUserDefaults];
-        [store setBool:NO forKey:@"isLoginSuccess"];
+        [store setBool:NO forKey:kUserLoginStatus];
         [store synchronize];
+
+
+    for (UIView *subView in self.view.subviews) {
+        
+        [subView removeFromSuperview];
+        
+    }
     
-        LoginViewController *lo = [[LoginViewController alloc]init];
-        [self.navigationController presentViewController:lo animated:YES completion:nil];
-
-
+    [self configLoginViews];
     
 }
 
@@ -214,11 +218,7 @@
 //
 //}
 
-- (void)didReceiveMemoryWarning
-{
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
-}
+
 //
 //- (UIImage *)thumbnailWithImage:(UIImage *)image size:(CGSize)asize
 //{
@@ -266,6 +266,232 @@
         UIGraphicsEndImageContext();
     }
     return newimage;
+}
+
+
+
+- (void)configLoginViews {
+
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(keyboardWillShow:) name:UIKeyboardWillShowNotification object:nil];
+    
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(keyboardWillHide:) name:UIKeyboardWillHideNotification object:nil];
+    
+    self.navigationController.navigationBarHidden = 1;
+    _baseView = [[UIView alloc]initWithFrame:CGRectMake(0, - self.view.frame.size.height, self.view.frame.size.width, self.view.frame.size.height)];
+    _baseView.alpha = 0.0;
+    [self.view addSubview:_baseView];
+    
+    _loginHeadImg = [[UIImageView alloc]init];
+    _loginHeadImg.image = [UIImage imageNamed:@"head_login.jpg"];
+    _loginHeadImg.layer.cornerRadius = 6;
+    _loginHeadImg.layer.masksToBounds = 1;
+
+
+    
+    _userAccount = [[UITextField alloc]init];
+    _userAccount.borderStyle = UITextBorderStyleRoundedRect;
+    _userAccount.backgroundColor = [UIColor whiteColor];
+    _userAccount.placeholder = @"Account";
+    _userAccount.clearButtonMode = UITextFieldViewModeWhileEditing;
+    
+    _userPassword = [[UITextField alloc]init];
+    _userPassword.borderStyle = UITextBorderStyleRoundedRect;
+    _userPassword.backgroundColor = [UIColor whiteColor];
+    _userPassword.placeholder = @"Password";
+    _userPassword.clearButtonMode = UITextFieldViewModeWhileEditing;
+    _userPassword.secureTextEntry = YES;
+    
+    _registerBtn = [[UIButton alloc]init];
+    _registerBtn.backgroundColor = [ConfigUITools colorRandomly];
+    [_registerBtn setTitle:@"注册" forState:UIControlStateNormal];
+    _registerBtn.layer.cornerRadius = 6;
+    _registerBtn.layer.masksToBounds = 1;
+    _registerBtn.tag = 100 + 0;
+    
+    
+    _loginBtn = [[UIButton alloc]init];
+    _loginBtn.backgroundColor = [ConfigUITools colorRandomly];
+    [_loginBtn setTitle:@"登录" forState:UIControlStateNormal];
+    _loginBtn.layer.cornerRadius = 6;
+    _loginBtn.layer.masksToBounds = 1;
+    _loginBtn.tag = 100 + 1;
+    
+    
+    
+    [_baseView addSubview:_loginHeadImg];
+    [_baseView addSubview:_userAccount];
+    [_baseView addSubview:_userPassword];
+    [_baseView addSubview:_registerBtn];
+    [_baseView addSubview:_loginBtn];
+    
+
+    __weak typeof(self) weakSelf = self;
+    int padding = 20;
+    
+    [_loginHeadImg mas_makeConstraints:^(MASConstraintMaker *make) {
+        
+        make.centerX.mas_equalTo(_baseView.mas_centerX);
+        make.left.equalTo(_baseView.mas_left).with.offset(_baseView.frame.size.width / 7);
+        make.right.equalTo(_baseView.mas_right).with.offset(- _baseView.frame.size.width / 7);
+        make.bottom.equalTo(_userAccount.mas_top).with.offset(- padding);
+        make.top.equalTo(_baseView.mas_top).with.offset(_baseView.frame.size.height / 10);
+        make.height.mas_equalTo(@(weakSelf.view.frame.size.width / 7 * 5 /(820.0/470.0)));
+        
+        
+    }];
+    
+    [_userAccount mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.centerX.mas_equalTo(_baseView.mas_centerX);
+        make.left.equalTo(_baseView.mas_left).with.offset(padding);
+        make.right.equalTo(_baseView.mas_right).with.offset(-padding);
+        make.bottom.equalTo(_userPassword.mas_top).with.offset(- 1.5 * padding);
+        make.top.equalTo(_loginHeadImg.mas_bottom).with.offset(padding);
+        make.height.mas_equalTo(@40);
+        make.width.equalTo(_userPassword);
+    }];
+    [_userPassword mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.centerX.mas_equalTo(_baseView.mas_centerX);
+        make.left.equalTo(_baseView.mas_left).with.offset(padding);
+        make.right.equalTo(_baseView.mas_right).with.offset(-padding);
+        make.top.equalTo(_userAccount.mas_bottom).with.offset(1.5 * padding);
+        make.height.mas_equalTo(@40);
+        make.width.equalTo(_userAccount);
+    }];
+    
+    [_registerBtn mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.left.equalTo(_userPassword.mas_left).with.offset(padding);
+        make.top.equalTo(_userPassword.mas_bottom).with.offset(1.5 *padding);
+        make.right.equalTo(_loginBtn.mas_left).with.offset(-padding);
+        make.height.mas_equalTo(@40);
+        make.width.equalTo(_loginBtn);
+        
+    }];
+    
+    [_loginBtn mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.left.equalTo(_registerBtn.mas_right).with.offset(padding);
+        make.top.equalTo(_userPassword.mas_bottom).with.offset(1.5 * padding);
+        make.right.equalTo(_userPassword.mas_right).with.offset(-padding);
+        make.height.mas_equalTo(@40);
+        make.width.equalTo(_registerBtn);
+        
+    }];
+    
+    
+    [UIView animateWithDuration:1.5 animations:^{
+        
+        _baseView.alpha = 1.0;
+        _baseView.frame = self.view.frame;
+        
+    } completion:^(BOOL finished) {
+
+        [_registerBtn addTarget:self action:@selector(loginBtnClicked:) forControlEvents:UIControlEventTouchUpInside];
+        [_loginBtn addTarget:self action:@selector(loginBtnClicked:) forControlEvents:UIControlEventTouchUpInside];
+        
+    }];
+
+    
+}
+
+
+- (void)loginBtnClicked:(UIButton *)sender {
+    
+    switch (sender.tag - 100) {
+        case 0:
+        {
+        
+            
+        }
+            break;
+        case 1:
+        {
+            [self.view endEditing:YES];
+            [SVProgressHUD setDefaultMaskType:SVProgressHUDMaskTypeGradient];
+            [SVProgressHUD showWithStatus:@"Logging..."];
+            
+            dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
+                
+                
+                [NSThread sleepForTimeInterval:2];
+                dispatch_async(dispatch_get_main_queue(), ^{
+                    
+                    if ([_userAccount.text isEqualToString:@"123456"] && [_userPassword.text isEqualToString:@"123456"]) {
+                        
+                        UINavigationController *rootNav = [[UINavigationController alloc]initWithRootViewController:[AppEngineManager sharedInstance].baseViewController];
+                        [UncleCharAppDelegate getUncleCharAppDelegateDelegate].window.rootViewController = rootNav;
+                        
+                        NSUserDefaults *store = [NSUserDefaults standardUserDefaults];
+                        [store setBool:YES forKey:kUserLoginStatus];
+                        [store synchronize];
+                        
+                    }else {
+                        
+                        [SVProgressHUD showErrorWithStatus:@"Account or password error"];
+                        
+                    }
+                    
+                });
+            });
+            
+        }
+            
+            break;
+            
+        default:
+            break;
+    }
+    
+    
+}
+#pragma mark - keyboard events
+
+///键盘显示事件
+- (void) keyboardWillShow:(NSNotification *)notification {
+    
+    
+    
+    _btnMaxY = CGRectGetMaxY(_loginBtn.frame);
+    
+    
+    //获取键盘高度，在不同设备上，以及中英文下是不同的
+    CGFloat kbHeight = [[notification.userInfo objectForKey:UIKeyboardFrameEndUserInfoKey] CGRectValue].size.height;
+    
+    double duration = [[notification.userInfo objectForKey:UIKeyboardAnimationDurationUserInfoKey] doubleValue];
+    
+    if(_btnMaxY >(self.view.frame.size.height - kbHeight)) {
+        
+        [UIView animateWithDuration:duration + 0.3 animations:^{
+            
+            _baseView.frame = CGRectMake(_baseView.frame.origin.x,-( _btnMaxY - (self.view.frame.size.height - kbHeight) + 10), _baseView.frame.size.width, _baseView.frame.size.height);
+            
+        }];
+    }
+    //注明：这里不需要移除通知
+}
+
+- (void) keyboardWillHide:(NSNotification *)notify {
+    
+    double duration = [[notify.userInfo objectForKey:UIKeyboardAnimationDurationUserInfoKey] doubleValue];
+    [UIView animateWithDuration:duration + 0.3 animations:^{
+        _baseView.frame = CGRectMake(self.view.frame.origin.x, self.view.frame.origin.y, self.view.frame.size.width, self.view.frame.size.height);
+    }];
+}
+
+- (void)touchesBegan:(NSSet<UITouch *> *)touches withEvent:(UIEvent *)event {
+    
+    [self.view endEditing:YES];
+}
+
+- (void)didReceiveMemoryWarning
+{
+    [super didReceiveMemoryWarning];
+    // Dispose of any resources that can be recreated.
+}
+
+- (void)dealloc {
+    
+    [[NSNotificationCenter defaultCenter] removeObserver:self name:UIKeyboardWillShowNotification object:nil];
+    [[NSNotificationCenter defaultCenter] removeObserver:self name:UIKeyboardWillHideNotification object:nil];
+    
 }
 
 

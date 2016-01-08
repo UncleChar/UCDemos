@@ -7,10 +7,6 @@
 //
 
 #import "LeftViewController.h"
-#import "fuckViewController.h"
-#import "loveViewController.h"
-#import "AppBaseViewController.h"
-#import "AppEngineManager.h"
 #import "UserSignViewController.h"
 #import "RenewUserAvatarViewController.h"
 #import "OperateDBViewController.h"
@@ -18,16 +14,14 @@
 #import "ContactsSelectorViewController.h"
 #import "GifPlayViewController.h"
 #import "VoiceRecognitionViewController.h"
-#define kScreenHeight  [UIScreen mainScreen].bounds.size.height
-#define kScreenWidth  [UIScreen mainScreen].bounds.size.width
 
 @interface LeftViewController ()<UITableViewDataSource,UITableViewDelegate>
 
+@property (nonatomic, strong) UIImageView  *avatarImageView;
+@property (nonatomic, strong) UIImageView  *topBackgrooundImg;
+@property (nonatomic, strong) UIImageView  *headImgView;
 @property (nonatomic, strong) NSArray      *titleListArray;
 @property (nonatomic, strong) UIView       *headView;
-@property (nonatomic, strong) UIImageView  *avatarImageView;
-@property (nonatomic, strong) UIImageView  *headBackgrooundImg;
-@property (nonatomic, strong) UIImageView  *headImgView;
 @property (nonatomic, strong) UILabel      *nameLabel;
 @property (nonatomic, strong) UILabel      *signNameLabel;
 @property (nonatomic, strong) UIView       *bottomView;
@@ -38,7 +32,7 @@
 
 - (void)viewWillAppear:(BOOL)animated {
 
-
+    
 }
 
 - (void)viewDidLoad {
@@ -49,10 +43,6 @@
     
     [self addTargetWithTapGesture];
     
-    
-
-
-    
 }
 - (void)configElementsUI {
 
@@ -61,56 +51,47 @@
     [self.view addSubview:_headView];
     
     
-    _headBackgrooundImg = [[UIImageView alloc]initWithFrame:CGRectMake(10, 0, kScreenWidth * 5 / 6, kScreenWidth * 5 / 12)];
-    //    _headBackgrooundImg.backgroundColor = [UIColor colorWithRed:200.0/255 green:200.0/255  blue:200.0/255  alpha:1.0];
-    _headBackgrooundImg.alpha =1;
-    [_headView addSubview:_headBackgrooundImg];
+    _topBackgrooundImg = [[UIImageView alloc]initWithFrame:CGRectMake(0, 0, kScreenWidth * 5 / 6, kScreenWidth * 5 / 12)];
+    _topBackgrooundImg.alpha =1;
+    _topBackgrooundImg.backgroundColor = [ConfigUITools colorRandomly];
+    [_headView addSubview:_topBackgrooundImg];
     
-    _avatarImageView = [[UIImageView alloc]initWithFrame:CGRectMake(20, 45, 50, 50)];
+    _avatarImageView = [[UIImageView alloc]initWithFrame:CGRectMake(kScreenWidth  * 5 / 6 / 12, 45, 50, 50)];
     _avatarImageView.image = [UIImage imageNamed:@"icon"];
     _avatarImageView.layer.cornerRadius = 25;
     _avatarImageView.layer.masksToBounds = 1;
     _avatarImageView.userInteractionEnabled = 1;
     [_headView addSubview:_avatarImageView];
     
-    
-    
-    
+
     _nameLabel = [[UILabel alloc]initWithFrame:CGRectMake(CGRectGetMaxX(_avatarImageView.frame) + 10, _avatarImageView.center.y - 15, 100, 30)];
     _nameLabel.text = @"UncleChar";
     [_nameLabel setTextColor:[UIColor blackColor]];
     [_headView  addSubview:_nameLabel];
     
     
-    
-    _signNameLabel = [[UILabel alloc]initWithFrame:CGRectMake(10, CGRectGetMaxY(_avatarImageView.frame) + (CGRectGetMaxY(_headView.frame) - CGRectGetMaxY(_avatarImageView.frame)) / 2 - 15, 200, 30)];
+    _signNameLabel = [[UILabel alloc]initWithFrame:CGRectMake(CGRectGetMinX(_avatarImageView.frame), CGRectGetMaxY(_avatarImageView.frame) + (CGRectGetMaxY(_headView.frame) - CGRectGetMaxY(_avatarImageView.frame)) / 2 - 15, 200, 30)];
     _signNameLabel.textColor = [UIColor colorWithRed:253.0/255 green:229.0/255 blue:29.0/255 alpha:1];
-    _signNameLabel.text = [[NSUserDefaults standardUserDefaults] objectForKey:@"userSign"];
+    _signNameLabel.text = [[NSUserDefaults standardUserDefaults] objectForKey:kPersonalizedSignature];
     _signNameLabel.userInteractionEnabled = 1;
     [_headView addSubview:_signNameLabel];
-    
-  
+
     
     _titleListArray = @[@"数据库测试-[FMDB]", @"MyLocation", @"UserAccount", @"GifPlayer", @"IflyMSC", @"我的", @"我的文件"];
-    
-    _listTableView = [[UITableView alloc]initWithFrame:CGRectMake(0, CGRectGetMaxY(_headBackgrooundImg.frame),self.view.frame.size.width, self.view.frame.size.height-_headView.frame.size.height - self.view.frame.size.height / 8) style:UITableViewStylePlain];
+    _listTableView = [[UITableView alloc]initWithFrame:CGRectMake(0, CGRectGetMaxY(_topBackgrooundImg.frame),self.view.frame.size.width, self.view.frame.size.height-_headView.frame.size.height - self.view.frame.size.height / 8) style:UITableViewStylePlain];
     _listTableView.separatorStyle = UITableViewCellSeparatorStyleNone;
     _listTableView.dataSource = self;
     _listTableView.delegate = self;
     _listTableView.backgroundColor = [UIColor colorWithRed:30.0/255 green:200.0/255 blue:249.0/255 alpha:1];
     _listTableView.alpha = 0.9;
-//    _listTableView.layer.cornerRadius = 5;
-//    _listTableView.layer.masksToBounds = 1;
     [self.view addSubview:_listTableView];
-    
     
     _bottomView = [[UIView alloc]initWithFrame:CGRectMake(0, self.view.frame.size.height * 7 / 8, self.view.frame.size.width, self.view.frame.size.height  / 8)];
     _bottomView.backgroundColor = [UIColor colorWithRed:30.0/255 green:200.0/255 blue:100.0/255 alpha:1];
     _bottomView.alpha = 0.9;
     [self.view addSubview:_bottomView];
-    
 
-   UIButton *exitBtn = [[UIButton alloc]initWithFrame:CGRectMake(10, 10, 80, 40)];
+    UIButton *exitBtn = [[UIButton alloc]initWithFrame:CGRectMake(10, 10, 80, 40)];
     exitBtn.backgroundColor = [UIColor whiteColor];
     [exitBtn setTitle:@"Exit" forState:UIControlStateNormal];
     [exitBtn setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
@@ -163,7 +144,7 @@
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
 
     AppBaseViewController *baseVC = [AppEngineManager sharedInstance].baseViewController;
-    [baseVC homeControllerAppear];
+    [baseVC baseControllerAppear];
 
     switch (indexPath.row) {
         case 0:
@@ -229,7 +210,7 @@
 - (void)elementAvatarImgClicked {
 
     AppBaseViewController *baseVC = [AppEngineManager sharedInstance].baseViewController;
-    [baseVC homeControllerAppear];
+    [baseVC baseControllerAppear];
     
     RenewUserAvatarViewController *userSignVC = [[RenewUserAvatarViewController alloc]init];
 //    userSignVC.signName = _signNameLabel.text;
@@ -244,7 +225,7 @@
     NSLog(@"tap");
   
             AppBaseViewController *baseVC = [AppEngineManager sharedInstance].baseViewController;
-            [baseVC homeControllerAppear];
+            [baseVC baseControllerAppear];
             
             UserSignViewController *userSignVC = [[UserSignViewController alloc]init];
             userSignVC.signName = _signNameLabel.text;
@@ -257,11 +238,12 @@
 
     if (_avatarImageView) {
         
-        NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
-        NSString *documentsDirectory = [paths objectAtIndex:0];
+        if (nil == [AppEngineManager sharedInstance].leftViewElementsPath) {
+            
+            [[AppEngineManager sharedInstance] createSubDirectoryName:@"LeftElementsFile" underSuperDirectory:[AppEngineManager sharedInstance].dirDocument];
+        }
         
-        NSString *imageFilePath = [documentsDirectory stringByAppendingPathComponent:@"LeftVCElements/userAvatar.jpg"];
-        
+        NSString *imageFilePath = [[AppEngineManager sharedInstance].leftViewElementsPath stringByAppendingPathComponent:@"/userAvatar.jpg"];
         _avatarImageView.image = [UIImage imageWithContentsOfFile:imageFilePath];
         
     }
@@ -273,9 +255,18 @@
 
     if (_signNameLabel) {
         
-        _signNameLabel.text = [[NSUserDefaults standardUserDefaults] objectForKey:@"userSign"];
+        if (nil == [[NSUserDefaults standardUserDefaults] objectForKey:kPersonalizedSignature]) {
+            
+            _signNameLabel.text = @"个性签名";
+            
+        }else {
+            
+            _signNameLabel.text = [[NSUserDefaults standardUserDefaults] objectForKey:kPersonalizedSignature];
+            
+        }
 
     }
+   
 }
 
 
@@ -283,37 +274,6 @@
 
 - (void)exitBtnClicked {
 
-//    AppBaseViewController *baseVC = [AppEngineManager sharedInstance].baseViewController;
-//    [baseVC homeControllerAppear];
-//
-//    [baseVC.navigationController popViewControllerAnimated:YES];
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-/*
-#pragma mark - Navigation
-
-// In a storyboard-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
-}
-*/
 
 @end

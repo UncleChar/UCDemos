@@ -8,8 +8,6 @@
 
 #import "UncleCharAppDelegate.h"
 #import "LoginViewController.h"
-#import "AppBaseViewController.h"
-#import "AppEngineManager.h"
 #import "CJNavigationController.h"
 #import "Reachability.h"
 #import "DBManager.h"
@@ -60,7 +58,7 @@
     
     self.window = [[UIWindow alloc]initWithFrame:[UIScreen mainScreen].bounds];
     UINavigationController *rootNav;
-    if ([[NSUserDefaults standardUserDefaults]boolForKey:@"isLoginSuccess"]) {
+    if ([[NSUserDefaults standardUserDefaults]boolForKey:kUserLoginStatus]) {
         
         rootNav = [[UINavigationController alloc]initWithRootViewController:[AppEngineManager sharedInstance].baseViewController];
     }else {
@@ -123,7 +121,7 @@
     
     if (status == NotReachable) {
         
-        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"无网络连接！请检查网络" message:@"WIFI"  delegate:nil
+        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"无网络连接！请检查网络" message:@"networking"  delegate:nil
                                               cancelButtonTitle:@"YES" otherButtonTitles:nil];
         
         [alert show];
@@ -146,7 +144,7 @@
 
 - (void)storeNetworkStatusWithBool:(BOOL)isReachable {
 
-    [[NSUserDefaults standardUserDefaults] setBool:isReachable forKey:@"networkStatus"];
+    [[NSUserDefaults standardUserDefaults] setBool:isReachable forKey:kNetworkStatus];
     
 }
 

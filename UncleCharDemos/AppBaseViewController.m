@@ -8,11 +8,7 @@
 
 #import "AppBaseViewController.h"
 #import "LeftViewController.h"
-#import "AppEngineManager.h"
 #import "MainTabBarController.h"
-
-#define kScreenHeight  [UIScreen mainScreen].bounds.size.height
-#define kScreenWidth  [UIScreen mainScreen].bounds.size.width
 
 @interface AppBaseViewController ()
 {
@@ -35,6 +31,7 @@
     [super viewWillAppear:YES];
     self.navigationController.navigationBarHidden = YES;
     [AppEngineManager sharedInstance].mainTabBarController.tabBar.hidden = NO;
+//     NSLog(@"kkkk-------%@",[UIApplication sharedApplication].windows);
 
 }
 
@@ -42,7 +39,7 @@
     
     [super viewDidLoad];
 
-    NSLog(@"kkkk-------%@",[UIApplication sharedApplication].windows);
+   
     self.view.backgroundColor = [UIColor whiteColor];
     
     [self initControllers];
@@ -88,7 +85,7 @@
     self.panGesture = [[UIPanGestureRecognizer alloc]initWithTarget:self action:@selector(gestureOnBaseVC:)];
     [baseView addGestureRecognizer:self.panGesture];
 
-    self.tapGesture = [[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(homeControllerAppear)];
+    self.tapGesture = [[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(baseControllerAppear)];
     
     
 }
@@ -108,7 +105,7 @@
     [self.navigationController popToRootViewControllerAnimated:YES];
 }
 
-- (void)homeControllerAppear{
+- (void)baseControllerAppear{
     
     [baseView removeGestureRecognizer:self.tapGesture];
     displacementOfLeftViewController = self.view.center.x;
@@ -171,7 +168,7 @@
             
         }else {
             
-            [self homeControllerAppear];
+            [self baseControllerAppear];
         }
         
         return; //这是需要return，因为停止状态了;

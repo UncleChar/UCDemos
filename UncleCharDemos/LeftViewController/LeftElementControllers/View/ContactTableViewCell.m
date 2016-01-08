@@ -12,7 +12,6 @@
 #import "UserModel.h"
 #import "GroupModel.h"
 #import "DivideContactsViewController.h"
-#import "ConfigUITools.h"
 //#import "UIImageView+WebCache.h"
 @interface ContactTableViewCell ()
 {

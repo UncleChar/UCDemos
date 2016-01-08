@@ -15,7 +15,7 @@
 #import "GroupModel.h"
 #import "ChineseToPinyin.h"
 #import "ContactTableViewCell.h"
-#import "ConfigUITools.h"
+
 
 
 @interface DivideContactsViewController ()<UITableViewDataSource,UITableViewDelegate,UISearchResultsUpdating,UISearchControllerDelegate,ContactTableViewCellDelegate>

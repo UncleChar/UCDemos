@@ -8,14 +8,10 @@
 
 #import "MainTabBarController.h"
 #import "LeftViewController.h"
-#import "AppEngineManager.h"
 #import "MessageViewController.h"
 #import "ContactsViewController.h"
 #import "ActiveViewController.h"
 
-
-#define kScreenHeight  [UIScreen mainScreen].bounds.size.height
-#define kScreenWidth  [UIScreen mainScreen].bounds.size.width
 
 @interface MainTabBarController ()
 {

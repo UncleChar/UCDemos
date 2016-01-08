@@ -7,7 +7,7 @@
 //
 
 #import "GifPlayViewController.h"
-#import "ConfigUITools.h"
+
 #import "YFGIFImageView.h"
 
 #define kMargin 2

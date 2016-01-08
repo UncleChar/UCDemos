@@ -9,8 +9,6 @@
 #import "UserSignViewController.h"
 
 
-#define kScreenHeight  [UIScreen mainScreen].bounds.size.height
-#define kScreenWidth  [UIScreen mainScreen].bounds.size.width
 @interface UserSignViewController ()
 {
 
@@ -49,7 +47,7 @@
 }
 - (void)saveSign {
 
-    [[NSUserDefaults standardUserDefaults]setObject:tf.text forKey:@"userSign"];
+    [[NSUserDefaults standardUserDefaults]setObject:tf.text forKey:kPersonalizedSignature];
     [self.navigationController popViewControllerAnimated:YES];
 
 }

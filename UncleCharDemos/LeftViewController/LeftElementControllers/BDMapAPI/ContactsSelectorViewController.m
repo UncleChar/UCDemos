@@ -7,14 +7,10 @@
 //
 
 #import "ContactsSelectorViewController.h"
-#import "Masonry.h"
-#import "DaiDodgeKeyboard.h"
 #import "DivideContactsViewController.h"
 
 #import "UserModel.h"
 #import "GroupModel.h"
-
-#import "ConfigUITools.h"
 
 @interface ContactsSelectorViewController ()
 
@@ -51,7 +47,7 @@
     
     [self configNavItems];
     
-    [self configUI];
+    [self configContactsVCUI];
     
     [self handleContactsData];
     
@@ -73,7 +69,7 @@
     
 }
 
-- (void)configUI {
+- (void)configContactsVCUI {
 
 
      _baseView = [[UIView alloc]initWithFrame:self.view.frame];

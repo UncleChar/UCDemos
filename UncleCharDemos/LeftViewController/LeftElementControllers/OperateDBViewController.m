@@ -10,14 +10,11 @@
 #import "ASIHTTPRequest.h"
 #import "ASINetworkQueue.h"
 #import "DBManager.h"
-#import "ConfigUITools.h"
 #import "UserTestModel.h"
 #import "OperateDBTabelViewCell.h"
-#import "AppEngineManager.h"
 
-#define kScreenHeight  [UIScreen mainScreen].bounds.size.height
-#define kScreenWidth  [UIScreen mainScreen].bounds.size.width
-#define kBtnColor [UIColor colorWithRed:103.0/255.0 green:203.0/255.0 blue:249.0/255.0 alpha:0.75]
+
+
 @interface OperateDBViewController ()<ASIHTTPRequestDelegate,UITableViewDataSource,UITableViewDelegate>
 
 @property (nonatomic, strong) UIImageView     *imageFromNetwork;
@@ -65,13 +62,13 @@
         _showDataForImgArray = [[NSMutableArray alloc]initWithCapacity:0];
     }
     
-    [self configUI];
+    [self configOperateVCUI];
     
  
     
 }
 
-- (void)configUI {
+- (void)configOperateVCUI {
 
     _reqestProgress = [[UIProgressView alloc]initWithFrame:CGRectMake(kScreenWidth / 2 - 100, 68, 200, 4)];
     _reqestProgress.backgroundColor = [UIColor redColor];

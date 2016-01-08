@@ -19,7 +19,7 @@
 @property (nonatomic, strong) UIPanGestureRecognizer *panGesture;
 @property (nonatomic, strong) UITapGestureRecognizer *tapGesture;
 //呈现主页
-- (void)homeControllerAppear;
+- (void)baseControllerAppear;
 //呈现左侧菜单
 - (void)leftControllerAppear;
 

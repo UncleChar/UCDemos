@@ -105,4 +105,26 @@ static  AppEngineManager *sharesElement = nil;
 
 }
 
+- (void)createSubDirectoryName:(NSString *)subDirectoryName underSuperDirectory:(NSString *)superDirectory {
+
+     NSFileManager *fileManager = [NSFileManager defaultManager];
+    NSString *directory = [NSString stringWithFormat:@"%@/%@",superDirectory,subDirectoryName];
+    // 创建目录
+    BOOL res = [fileManager createDirectoryAtPath:directory withIntermediateDirectories:YES attributes:nil error:nil];
+    if (res) {
+        NSLog(@"目录-%@创建成功",subDirectoryName);
+        self.leftViewElementsPath = directory;
+    }else{
+        NSLog(@"目录-%@-创建失败",subDirectoryName);
+        self.leftViewElementsPath = nil;
+    }
+}
+
+
+- (void)baseViewControllerPushViewController:(UIViewController *)targetViewController animated:(BOOL)animated {
+
+    [[AppEngineManager sharedInstance].baseViewController.navigationController pushViewController:targetViewController animated:animated];
+
+}
+
 @end
