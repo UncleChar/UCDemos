@@ -10,7 +10,6 @@
 @class UITapGestureRecognizer;
 @interface BaseViewController : UIViewController
 
-
 @property (nonatomic, strong) UITapGestureRecognizer *tapGesture;
 
 @end

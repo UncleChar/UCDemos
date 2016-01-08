@@ -10,13 +10,21 @@
 #import "LocationViewController.h"
 #import "ChatRoomViewController.h"
 
-@interface MessageViewController ()<UITableViewDataSource,UITableViewDelegate>
+@interface MessageViewController ()<UITableViewDataSource,UITableViewDelegate,UISearchControllerDelegate,UISearchResultsUpdating,UISearchBarDelegate>
 
-@property (nonatomic, strong) UITableView       *userChatTableView;
-@property (nonatomic, strong) NSMutableArray    *userChatArrary;
+@property (nonatomic, strong) UITableView         *userChatTableView;
+@property (nonatomic, strong) NSMutableArray      *userChatArrary;
+@property (nonatomic, strong) NSMutableArray      *userSearchResultArrary;
+@property (nonatomic, strong) UISearchController  *userSearchController;
 
 @end
 @implementation MessageViewController
+
+- (void)viewWillAppear:(BOOL)animated {
+
+    [super viewWillAppear:YES];
+    self.userSearchController.searchBar.hidden = NO;
+}
 
 - (void)viewDidLoad {
     
@@ -26,11 +34,6 @@
     
     [self handleMessageVCData];
     
-    
-    
-    
-   
-
 
 }
 
@@ -53,6 +56,7 @@
     [_userChatArrary addObject:name4];
     [_userChatArrary addObject:name5];
     
+    _userSearchResultArrary = _userChatArrary;
 }
 
 - (void)configMessageVCUI {
@@ -62,20 +66,51 @@
     rightItem.image = [UIImage imageNamed:@"tabbar_location@2x"];
     self.navigationItem.rightBarButtonItem = rightItem;
     
-    _userChatTableView = [[UITableView alloc]initWithFrame:CGRectMake(0, 3, kScreenWidth, kScreenHeight - 49) style:UITableViewStylePlain];
+    
+
+    
+    
+    _userChatTableView = [[UITableView alloc]initWithFrame:CGRectMake(0, 0, kScreenWidth, kScreenHeight - 49) style:UITableViewStylePlain];
     _userChatTableView.delegate   = self;
     _userChatTableView.dataSource = self;
 //    _userChatTableView.backgroundColor = [UIColor purpleColor];
     [self.view addSubview:_userChatTableView];
     
+    _userSearchController = [[UISearchController alloc]initWithSearchResultsController:nil];
+    _userSearchController.searchResultsUpdater = self;
+    _userSearchController.dimsBackgroundDuringPresentation = NO;
+//    _userSearchController.searchBar.text = @"kaisho";
+//    [_userSearchController.searchBar setShowsCancelButton:YES];
+    [_userSearchController.searchBar sizeToFit];
+    _userSearchController.searchBar.delegate = self;
+    _userChatTableView.tableHeaderView = self.userSearchController.searchBar;
+    
 }
 
+
+- (void)searchBarTextDidBeginEditing:(UISearchBar *)searchBar
+{
+    
+    for(id cc in [searchBar.subviews[0] subviews])
+    {
+        if([cc isKindOfClass:[UIButton class]])
+        {
+            UIButton *btn = (UIButton *)cc;
+            [btn setTitle:@"取消" forState:UIControlStateNormal];
+//            [btn setTitleColor:[UIColor blueColor] forState:UIControlStateNormal];
+        }
+    }
+}
 
 
 #pragma mark - UITableViewDelegate
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
 
-    return _userChatArrary.count;
+    if (nil == _userSearchResultArrary || _userSearchResultArrary.count == 0) {
+        
+        _userSearchResultArrary = _userChatArrary;
+    }
+    return _userSearchResultArrary.count;
 }
 
 #pragma mark - UITableViewDataSource
@@ -90,10 +125,11 @@
     }
     
     cell.imageView.image = [UIImage imageNamed:@"icon"];
-    cell.textLabel.text = _userChatArrary[indexPath.row];
+    cell.textLabel.text = _userSearchResultArrary[indexPath.row];
     cell.imageView.layer.cornerRadius = 24;
     cell.imageView.layer.masksToBounds = 1;
-    [cell setSelected:YES animated:NO];
+    [cell setSelected:YES animated:YES];
+
     
     return cell;
 }
@@ -106,27 +142,25 @@
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
 
+
     ChatRoomViewController *chatRoomVC = [[ChatRoomViewController alloc]init];
-    chatRoomVC.chatRoomTitle = _userChatArrary[indexPath.row];
+    chatRoomVC.chatRoomTitle = _userSearchResultArrary[indexPath.row];
+    self.userSearchController.searchBar.hidden = YES;
+    [self.userSearchController.searchBar resignFirstResponder];
+    
     [[AppEngineManager sharedInstance] baseViewControllerPushViewController:chatRoomVC animated:YES];
     
 }
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+- (void)updateSearchResultsForSearchController:(UISearchController *)searchController{
+    NSString *filterString = searchController.searchBar.text;
+    
+    NSPredicate *predicate = [NSPredicate predicateWithFormat:@"SELF contains [c] %@", filterString];
+    
+    _userSearchResultArrary = [NSMutableArray arrayWithArray:[self.userChatArrary filteredArrayUsingPredicate:predicate]];
+    
+    [self.userChatTableView reloadData];
+}
 
 
 - (void)LocationVC {
@@ -134,4 +168,5 @@
     LocationViewController *locationVC = [[LocationViewController alloc]init];
     [[AppEngineManager sharedInstance] baseViewControllerPushViewController:locationVC animated:YES];
 }
+
 @end

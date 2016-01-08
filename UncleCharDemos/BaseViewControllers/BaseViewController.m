@@ -14,15 +14,14 @@
 - (void)viewDidLoad {
 
     [super viewDidLoad];
-    self.title = @"ff";
-    UIBarButtonItem *leftItem = [[UIBarButtonItem alloc] initWithTitle:nil style:UIBarButtonItemStylePlain target:self action:@selector(home)];
+    UIBarButtonItem *leftItem = [[UIBarButtonItem alloc] initWithTitle:nil style:UIBarButtonItemStylePlain target:self action:@selector(baseVC)];
     leftItem.image = [UIImage imageNamed:@"qq@3x"];
     self.navigationItem.leftBarButtonItem = leftItem;
     
 
 }
-- (void)home{
-    
+- (void)baseVC{
+
     NSLog(@"leftBtnClicked");
     [[AppEngineManager sharedInstance].baseViewController leftControllerAppear];
 
