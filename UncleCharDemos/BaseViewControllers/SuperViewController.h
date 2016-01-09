@@ -8,7 +8,7 @@
 
 #import <UIKit/UIKit.h>
 @class UITapGestureRecognizer;
-@interface BaseViewController : UIViewController
+@interface SuperViewController : UIViewController
 
 @property (nonatomic, strong) UITapGestureRecognizer *tapGesture;
 

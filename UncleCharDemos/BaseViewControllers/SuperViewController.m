@@ -6,10 +6,10 @@
 //  Copyright © 2015年 LingLi. All rights reserved.
 //
 
-#import "BaseViewController.h"
+#import "SuperViewController.h"
 #import "LocationViewController.h"
 
-@implementation BaseViewController
+@implementation SuperViewController
 
 - (void)viewDidLoad {
 

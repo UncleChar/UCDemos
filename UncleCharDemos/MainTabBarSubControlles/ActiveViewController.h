@@ -6,8 +6,8 @@
 //  Copyright © 2015年 LingLi. All rights reserved.
 //
 
-#import "BaseViewController.h"
+#import "SuperViewController.h"
 
-@interface ActiveViewController : BaseViewController
+@interface ActiveViewController : SuperViewController
 
 @end

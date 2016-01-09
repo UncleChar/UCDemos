@@ -9,14 +9,22 @@
 #import "MessageViewController.h"
 #import "LocationViewController.h"
 #import "ChatRoomViewController.h"
+#import "MJRefresh.h"
+#import "UIView+MJExtension.h"
+#import "MJRefresh.h"
 
+#define MessaageVCRandomData [NSString stringWithFormat:@"UserAccount--%d", arc4random_uniform(1000000)]
 @interface MessageViewController ()<UITableViewDataSource,UITableViewDelegate,UISearchControllerDelegate,UISearchResultsUpdating,UISearchBarDelegate>
+{
 
+    CALayer              *_layer;     //图层
+    NSTimer              *_timer;     //定时器
+}
 @property (nonatomic, strong) UITableView         *userChatTableView;
 @property (nonatomic, strong) NSMutableArray      *userChatArrary;
 @property (nonatomic, strong) NSMutableArray      *userSearchResultArrary;
 @property (nonatomic, strong) UISearchController  *userSearchController;
-
+@property (nonatomic, strong) MJRefreshHeader     *header;
 @end
 @implementation MessageViewController
 
@@ -24,11 +32,30 @@
 
     [super viewWillAppear:YES];
     self.userSearchController.searchBar.hidden = NO;
+//    [_userChatTableView.mj_header beginRefreshing];
+
+
 }
 
 - (void)viewDidLoad {
     
-     [super viewDidLoad];
+    [super viewDidLoad];
+    
+    UIBarButtonItem *leftItem = [[UIBarButtonItem alloc] initWithTitle:nil style:UIBarButtonItemStylePlain target:self action:@selector(messageVC)];
+    leftItem.image = [UIImage imageNamed:@"qq@3x"];
+    self.navigationItem.leftBarButtonItem = leftItem;
+
+    
+    UIImageView *leftRefresh = [[UIImageView alloc]initWithFrame:CGRectMake(55, 25, 34, 34)];
+    
+    leftRefresh.image = [UIImage imageNamed:@"basevc_refresh@2x"];
+    [self.navigationController.view addSubview:leftRefresh];
+
+//    _layer = leftRefresh.layer;
+
+
+
+    [self imitateRefresh];
     
     [self configMessageVCUI];
     
@@ -36,7 +63,23 @@
     
 
 }
+- (void)imitateRefresh {
 
+    _timer = [NSTimer scheduledTimerWithTimeInterval:0.1 target:self selector:@selector(rotationRefreshView) userInfo:nil repeats:YES];
+    dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
+        
+        
+        [NSThread sleepForTimeInterval:4];
+        dispatch_async(dispatch_get_main_queue(), ^{
+            
+
+            [_timer invalidate];
+            [_userChatTableView.mj_header endRefreshing];
+//            _layer.transform = CATransform3DIdentity;
+            
+        });
+    });
+}
 
 - (void)handleMessageVCData {
     
@@ -73,6 +116,7 @@
     _userChatTableView = [[UITableView alloc]initWithFrame:CGRectMake(0, 0, kScreenWidth, kScreenHeight - 49) style:UITableViewStylePlain];
     _userChatTableView.delegate   = self;
     _userChatTableView.dataSource = self;
+
 //    _userChatTableView.backgroundColor = [UIColor purpleColor];
     [self.view addSubview:_userChatTableView];
     
@@ -84,6 +128,32 @@
     [_userSearchController.searchBar sizeToFit];
     _userSearchController.searchBar.delegate = self;
     _userChatTableView.tableHeaderView = self.userSearchController.searchBar;
+    _userSearchController.hidesNavigationBarDuringPresentation = NO;
+    _userChatTableView.mj_header = [MJRefreshNormalHeader headerWithRefreshingBlock:^{
+
+        
+        for (int i = 0; i < 4; i ++) {
+            
+            [_userChatArrary addObject:MessaageVCRandomData];
+            
+        }
+        
+        
+        dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
+            
+            
+            [NSThread sleepForTimeInterval:4];
+            dispatch_async(dispatch_get_main_queue(), ^{
+                
+                
+
+                [_userChatTableView.mj_header endRefreshing];
+                [_userChatTableView reloadData];
+                //            _layer.transform = CATransform3DIdentity;
+                
+            });
+        });
+    }];
     
 }
 
@@ -162,6 +232,23 @@
     [self.userChatTableView reloadData];
 }
 
+- (void)scrollViewWillEndDragging:(UIScrollView *)scrollView withVelocity:(CGPoint)velocity targetContentOffset:(inout CGPoint *)targetContentOffset {
+
+    NSLog(@"ff%lf",scrollView.contentOffset.y);
+}
+
+
+#pragma mark 角标旋转
+- (void)rotationRefreshView
+{
+    _layer.transform = CATransform3DRotate(_layer.transform, M_PI_4 / 5, 0, 0, 1);
+}
+- (void)messageVC {
+
+    NSLog(@"leftBtnClicked");
+    [[AppEngineManager sharedInstance].baseViewController leftControllerAppear];
+    
+}
 
 - (void)LocationVC {
     
