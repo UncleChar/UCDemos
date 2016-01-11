@@ -55,7 +55,7 @@
 
 
 
-    [self imitateRefresh];
+//    [self imitateRefresh];
     
     [self configMessageVCUI];
     
@@ -126,9 +126,12 @@
 //    _userSearchController.searchBar.text = @"kaisho";
 //    [_userSearchController.searchBar setShowsCancelButton:YES];
     [_userSearchController.searchBar sizeToFit];
+    _userSearchController.view.backgroundColor = [UIColor clearColor];
     _userSearchController.searchBar.delegate = self;
     _userChatTableView.tableHeaderView = self.userSearchController.searchBar;
-    _userSearchController.hidesNavigationBarDuringPresentation = NO;
+//    _userSearchController.hidesNavigationBarDuringPresentation = NO;
+    
+    
     _userChatTableView.mj_header = [MJRefreshNormalHeader headerWithRefreshingBlock:^{
 
         
@@ -199,8 +202,6 @@
     cell.imageView.layer.cornerRadius = 24;
     cell.imageView.layer.masksToBounds = 1;
     [cell setSelected:YES animated:YES];
-
-    
     return cell;
 }
 

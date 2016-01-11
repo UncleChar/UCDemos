@@ -295,25 +295,25 @@
 		DB167AED1C2D7CCE00AE61DB /* WeakUp.jpg in Resources */ = {isa = PBXBuildFile; fileRef = DB167AEC1C2D7CCE00AE61DB /* WeakUp.jpg */; };
 		DB167AF01C2D7D4A00AE61DB /* LeftViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DB167AEF1C2D7D4A00AE61DB /* LeftViewController.m */; };
 		DB167AF31C2D7FA000AE61DB /* MainTabBarController.m in Sources */ = {isa = PBXBuildFile; fileRef = DB167AF21C2D7FA000AE61DB /* MainTabBarController.m */; };
-		DBA8858D1C40B29B002CA21E /* MJRefreshAutoFooter.m in Sources */ = {isa = PBXBuildFile; fileRef = DBA885631C40B29B002CA21E /* MJRefreshAutoFooter.m */; settings = {ASSET_TAGS = (); }; };
-		DBA8858E1C40B29B002CA21E /* MJRefreshBackFooter.m in Sources */ = {isa = PBXBuildFile; fileRef = DBA885651C40B29B002CA21E /* MJRefreshBackFooter.m */; settings = {ASSET_TAGS = (); }; };
-		DBA8858F1C40B29B002CA21E /* MJRefreshComponent.m in Sources */ = {isa = PBXBuildFile; fileRef = DBA885671C40B29B002CA21E /* MJRefreshComponent.m */; settings = {ASSET_TAGS = (); }; };
-		DBA885901C40B29B002CA21E /* MJRefreshFooter.m in Sources */ = {isa = PBXBuildFile; fileRef = DBA885691C40B29B002CA21E /* MJRefreshFooter.m */; settings = {ASSET_TAGS = (); }; };
-		DBA885911C40B29B002CA21E /* MJRefreshHeader.m in Sources */ = {isa = PBXBuildFile; fileRef = DBA8856B1C40B29B002CA21E /* MJRefreshHeader.m */; settings = {ASSET_TAGS = (); }; };
-		DBA885921C40B29B002CA21E /* MJRefreshAutoGifFooter.m in Sources */ = {isa = PBXBuildFile; fileRef = DBA885701C40B29B002CA21E /* MJRefreshAutoGifFooter.m */; settings = {ASSET_TAGS = (); }; };
-		DBA885931C40B29B002CA21E /* MJRefreshAutoNormalFooter.m in Sources */ = {isa = PBXBuildFile; fileRef = DBA885721C40B29B002CA21E /* MJRefreshAutoNormalFooter.m */; settings = {ASSET_TAGS = (); }; };
-		DBA885941C40B29B002CA21E /* MJRefreshAutoStateFooter.m in Sources */ = {isa = PBXBuildFile; fileRef = DBA885741C40B29B002CA21E /* MJRefreshAutoStateFooter.m */; settings = {ASSET_TAGS = (); }; };
-		DBA885951C40B29B002CA21E /* MJRefreshBackGifFooter.m in Sources */ = {isa = PBXBuildFile; fileRef = DBA885771C40B29B002CA21E /* MJRefreshBackGifFooter.m */; settings = {ASSET_TAGS = (); }; };
-		DBA885961C40B29B002CA21E /* MJRefreshBackNormalFooter.m in Sources */ = {isa = PBXBuildFile; fileRef = DBA885791C40B29B002CA21E /* MJRefreshBackNormalFooter.m */; settings = {ASSET_TAGS = (); }; };
-		DBA885971C40B29B002CA21E /* MJRefreshBackStateFooter.m in Sources */ = {isa = PBXBuildFile; fileRef = DBA8857B1C40B29B002CA21E /* MJRefreshBackStateFooter.m */; settings = {ASSET_TAGS = (); }; };
-		DBA885981C40B29B002CA21E /* MJRefreshGifHeader.m in Sources */ = {isa = PBXBuildFile; fileRef = DBA8857E1C40B29B002CA21E /* MJRefreshGifHeader.m */; settings = {ASSET_TAGS = (); }; };
-		DBA885991C40B29B002CA21E /* MJRefreshNormalHeader.m in Sources */ = {isa = PBXBuildFile; fileRef = DBA885801C40B29B002CA21E /* MJRefreshNormalHeader.m */; settings = {ASSET_TAGS = (); }; };
-		DBA8859A1C40B29B002CA21E /* MJRefreshStateHeader.m in Sources */ = {isa = PBXBuildFile; fileRef = DBA885821C40B29B002CA21E /* MJRefreshStateHeader.m */; settings = {ASSET_TAGS = (); }; };
-		DBA8859B1C40B29B002CA21E /* MJRefresh.bundle in Resources */ = {isa = PBXBuildFile; fileRef = DBA885831C40B29B002CA21E /* MJRefresh.bundle */; settings = {ASSET_TAGS = (); }; };
-		DBA8859C1C40B29B002CA21E /* MJRefreshConst.m in Sources */ = {isa = PBXBuildFile; fileRef = DBA885861C40B29B002CA21E /* MJRefreshConst.m */; settings = {ASSET_TAGS = (); }; };
-		DBA8859D1C40B29B002CA21E /* UIScrollView+MJExtension.m in Sources */ = {isa = PBXBuildFile; fileRef = DBA885881C40B29B002CA21E /* UIScrollView+MJExtension.m */; settings = {ASSET_TAGS = (); }; };
-		DBA8859E1C40B29B002CA21E /* UIScrollView+MJRefresh.m in Sources */ = {isa = PBXBuildFile; fileRef = DBA8858A1C40B29B002CA21E /* UIScrollView+MJRefresh.m */; settings = {ASSET_TAGS = (); }; };
-		DBA8859F1C40B29B002CA21E /* UIView+MJExtension.m in Sources */ = {isa = PBXBuildFile; fileRef = DBA8858C1C40B29B002CA21E /* UIView+MJExtension.m */; settings = {ASSET_TAGS = (); }; };
+		DBA8858D1C40B29B002CA21E /* MJRefreshAutoFooter.m in Sources */ = {isa = PBXBuildFile; fileRef = DBA885631C40B29B002CA21E /* MJRefreshAutoFooter.m */; };
+		DBA8858E1C40B29B002CA21E /* MJRefreshBackFooter.m in Sources */ = {isa = PBXBuildFile; fileRef = DBA885651C40B29B002CA21E /* MJRefreshBackFooter.m */; };
+		DBA8858F1C40B29B002CA21E /* MJRefreshComponent.m in Sources */ = {isa = PBXBuildFile; fileRef = DBA885671C40B29B002CA21E /* MJRefreshComponent.m */; };
+		DBA885901C40B29B002CA21E /* MJRefreshFooter.m in Sources */ = {isa = PBXBuildFile; fileRef = DBA885691C40B29B002CA21E /* MJRefreshFooter.m */; };
+		DBA885911C40B29B002CA21E /* MJRefreshHeader.m in Sources */ = {isa = PBXBuildFile; fileRef = DBA8856B1C40B29B002CA21E /* MJRefreshHeader.m */; };
+		DBA885921C40B29B002CA21E /* MJRefreshAutoGifFooter.m in Sources */ = {isa = PBXBuildFile; fileRef = DBA885701C40B29B002CA21E /* MJRefreshAutoGifFooter.m */; };
+		DBA885931C40B29B002CA21E /* MJRefreshAutoNormalFooter.m in Sources */ = {isa = PBXBuildFile; fileRef = DBA885721C40B29B002CA21E /* MJRefreshAutoNormalFooter.m */; };
+		DBA885941C40B29B002CA21E /* MJRefreshAutoStateFooter.m in Sources */ = {isa = PBXBuildFile; fileRef = DBA885741C40B29B002CA21E /* MJRefreshAutoStateFooter.m */; };
+		DBA885951C40B29B002CA21E /* MJRefreshBackGifFooter.m in Sources */ = {isa = PBXBuildFile; fileRef = DBA885771C40B29B002CA21E /* MJRefreshBackGifFooter.m */; };
+		DBA885961C40B29B002CA21E /* MJRefreshBackNormalFooter.m in Sources */ = {isa = PBXBuildFile; fileRef = DBA885791C40B29B002CA21E /* MJRefreshBackNormalFooter.m */; };
+		DBA885971C40B29B002CA21E /* MJRefreshBackStateFooter.m in Sources */ = {isa = PBXBuildFile; fileRef = DBA8857B1C40B29B002CA21E /* MJRefreshBackStateFooter.m */; };
+		DBA885981C40B29B002CA21E /* MJRefreshGifHeader.m in Sources */ = {isa = PBXBuildFile; fileRef = DBA8857E1C40B29B002CA21E /* MJRefreshGifHeader.m */; };
+		DBA885991C40B29B002CA21E /* MJRefreshNormalHeader.m in Sources */ = {isa = PBXBuildFile; fileRef = DBA885801C40B29B002CA21E /* MJRefreshNormalHeader.m */; };
+		DBA8859A1C40B29B002CA21E /* MJRefreshStateHeader.m in Sources */ = {isa = PBXBuildFile; fileRef = DBA885821C40B29B002CA21E /* MJRefreshStateHeader.m */; };
+		DBA8859B1C40B29B002CA21E /* MJRefresh.bundle in Resources */ = {isa = PBXBuildFile; fileRef = DBA885831C40B29B002CA21E /* MJRefresh.bundle */; };
+		DBA8859C1C40B29B002CA21E /* MJRefreshConst.m in Sources */ = {isa = PBXBuildFile; fileRef = DBA885861C40B29B002CA21E /* MJRefreshConst.m */; };
+		DBA8859D1C40B29B002CA21E /* UIScrollView+MJExtension.m in Sources */ = {isa = PBXBuildFile; fileRef = DBA885881C40B29B002CA21E /* UIScrollView+MJExtension.m */; };
+		DBA8859E1C40B29B002CA21E /* UIScrollView+MJRefresh.m in Sources */ = {isa = PBXBuildFile; fileRef = DBA8858A1C40B29B002CA21E /* UIScrollView+MJRefresh.m */; };
+		DBA8859F1C40B29B002CA21E /* UIView+MJExtension.m in Sources */ = {isa = PBXBuildFile; fileRef = DBA8858C1C40B29B002CA21E /* UIView+MJExtension.m */; };
 		DBDE27D31C2FAFD000D10851 /* icon.png in Resources */ = {isa = PBXBuildFile; fileRef = DBDE27D21C2FAFD000D10851 /* icon.png */; };
 		DBDE27E11C2FBDA300D10851 /* CJNavigationController.m in Sources */ = {isa = PBXBuildFile; fileRef = DBDE27E01C2FBDA300D10851 /* CJNavigationController.m */; };
 		DBDE27E91C2FC2CC00D10851 /* items_2@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = DBDE27E71C2FC2CC00D10851 /* items_2@2x.png */; };
@@ -1662,7 +1662,7 @@
 				TargetAttributes = {
 					DB167A921C2D734100AE61DB = {
 						CreatedOnToolsVersion = 7.0.1;
-						DevelopmentTeam = 244758CBEJ;
+						DevelopmentTeam = XP83374CHB;
 					};
 					DB167AAB1C2D734100AE61DB = {
 						CreatedOnToolsVersion = 7.0.1;
@@ -2067,8 +2067,8 @@
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
-				CODE_SIGN_IDENTITY = "iPhone Developer: Jun Quan (WCTJ975P5S)";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Jun Quan (WCTJ975P5S)";
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				COPY_PHASE_STRIP = NO;
 				DEBUG_INFORMATION_FORMAT = dwarf;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
@@ -2092,7 +2092,7 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				MTL_ENABLE_DEBUG_INFO = YES;
 				ONLY_ACTIVE_ARCH = YES;
-				PROVISIONING_PROFILE = "efc4cb6d-c60d-475a-af8e-ad12850a4c3c";
+				PROVISIONING_PROFILE = "";
 				SDKROOT = iphoneos;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
@@ -2115,8 +2115,8 @@
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
-				CODE_SIGN_IDENTITY = "iPhone Developer: Jun Quan (WCTJ975P5S)";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Jun Quan (WCTJ975P5S)";
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				COPY_PHASE_STRIP = NO;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				ENABLE_NS_ASSERTIONS = NO;
@@ -2133,7 +2133,7 @@
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
-				PROVISIONING_PROFILE = "efc4cb6d-c60d-475a-af8e-ad12850a4c3c";
+				PROVISIONING_PROFILE = "";
 				SDKROOT = iphoneos;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				VALIDATE_PRODUCT = YES;
@@ -2156,9 +2156,9 @@
 				INFOPLIST_FILE = UncleCharDemos/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 8.3;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.xhl.SlideLikeQQ;
+				PRODUCT_BUNDLE_IDENTIFIER = com.xhl.UncleCharDemos;
 				PRODUCT_NAME = UncleChar;
-				PROVISIONING_PROFILE = "efc4cb6d-c60d-475a-af8e-ad12850a4c3c";
+				PROVISIONING_PROFILE = "";
 			};
 			name = Debug;
 		};
@@ -2178,9 +2178,9 @@
 				INFOPLIST_FILE = UncleCharDemos/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 8.3;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.xhl.SlideLikeQQ;
+				PRODUCT_BUNDLE_IDENTIFIER = com.xhl.UncleCharDemos;
 				PRODUCT_NAME = UncleChar;
-				PROVISIONING_PROFILE = "efc4cb6d-c60d-475a-af8e-ad12850a4c3c";
+				PROVISIONING_PROFILE = "";
 			};
 			name = Release;
 		};
