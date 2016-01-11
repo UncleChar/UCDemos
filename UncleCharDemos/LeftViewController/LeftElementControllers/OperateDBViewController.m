@@ -177,6 +177,14 @@
                 [imgUrlArr addObject:@"http://a.hiphotos.baidu.com/zhidao/pic/item/8694a4c27d1ed21ba67031c0ac6eddc451da3f5d.jpg"];
                 [imgUrlArr addObject:@"http://t1.niutuku.com/960/59/59-259160.jpg"];
                 [imgUrlArr addObject:@"http://b.zol-img.com.cn/desk/bizhi/image/1/960x600/13479490300.jpg"];
+                [imgUrlArr addObject:@"http://pic14.nipic.com/20110522/7411759_164157418126_2.jpg"];
+                [imgUrlArr addObject:@"http://img.taopic.com/uploads/allimg/130501/240451-13050106450911.jpg"];
+                [imgUrlArr addObject:@"http://a2.att.hudong.com/38/59/300001054794129041591416974.jpg"];
+                [imgUrlArr addObject:@"http://img05.tooopen.com/images/20140919/sy_71272488121.jpg"];
+                [imgUrlArr addObject:@"http://pic.58pic.com/58pic/11/16/28/22J58PICIKD.jpg"];
+                [imgUrlArr addObject:@"http://img.taopic.com/uploads/allimg/121203/235072-12120314092963.jpg"];
+
+
                 
                 _requestQueue = [[ASINetworkQueue alloc]init];
                 [_requestQueue setRequestDidFinishSelector:@selector(requestFinished:)];
@@ -186,7 +194,7 @@
                 [_requestQueue setShowAccurateProgress:YES];//进度条精确显示
                 [_requestQueue setDelegate:self];
                 
-                for (int i=0; i<5; i++) {
+                for (int i=0; i<imgUrlArr.count; i++) {
                     
                     ASIHTTPRequest *request = [ASIHTTPRequest requestWithURL:[NSURL URLWithString:imgUrlArr[i]]];
                     request.tag = i + 666;
@@ -243,10 +251,12 @@
                 NSArray *allDataArray = [NSArray array];
                 allDataArray = [[DBManager sharedDBManager] allDataWithTableName:@"UserInfo"];
                 
-//                for (UserTestModel *model in allDataArray) {
-//                    
-//                    
-//                }
+                for (UserTestModel *model in allDataArray) {
+                    UIImageView *iv = [[UIImageView alloc]init];
+                    iv.image = [UIImage imageWithData:model.biggerData];
+                    NSLog(@"$$$%lf,%lf",iv.image.size.width,iv.image.size.height);
+                    
+                }
                 _showDataArray = (NSMutableArray *)allDataArray;
                 
                 [_showDataTableView reloadData];

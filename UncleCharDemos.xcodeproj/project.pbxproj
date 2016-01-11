@@ -1662,7 +1662,7 @@
 				TargetAttributes = {
 					DB167A921C2D734100AE61DB = {
 						CreatedOnToolsVersion = 7.0.1;
-						DevelopmentTeam = XP83374CHB;
+						DevelopmentTeam = 244758CBEJ;
 					};
 					DB167AAB1C2D734100AE61DB = {
 						CreatedOnToolsVersion = 7.0.1;
@@ -2092,7 +2092,7 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				MTL_ENABLE_DEBUG_INFO = YES;
 				ONLY_ACTIVE_ARCH = YES;
-				PROVISIONING_PROFILE = "";
+				PROVISIONING_PROFILE = "efc4cb6d-c60d-475a-af8e-ad12850a4c3c";
 				SDKROOT = iphoneos;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
@@ -2133,7 +2133,7 @@
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
-				PROVISIONING_PROFILE = "";
+				PROVISIONING_PROFILE = "efc4cb6d-c60d-475a-af8e-ad12850a4c3c";
 				SDKROOT = iphoneos;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				VALIDATE_PRODUCT = YES;
@@ -2158,7 +2158,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.xhl.UncleCharDemos;
 				PRODUCT_NAME = UncleChar;
-				PROVISIONING_PROFILE = "";
+				PROVISIONING_PROFILE = "efc4cb6d-c60d-475a-af8e-ad12850a4c3c";
 			};
 			name = Debug;
 		};
@@ -2180,7 +2180,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.xhl.UncleCharDemos;
 				PRODUCT_NAME = UncleChar;
-				PROVISIONING_PROFILE = "";
+				PROVISIONING_PROFILE = "efc4cb6d-c60d-475a-af8e-ad12850a4c3c";
 			};
 			name = Release;
 		};

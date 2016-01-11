@@ -8,7 +8,7 @@
 
 #import "ChatRoomViewController.h"
 #import <AssetsLibrary/AssetsLibrary.h>
-
+#import "UserTestModel.h"
 #define kPicScrollerHeight 200
 @interface ChatRoomViewController ()
 {
@@ -21,7 +21,7 @@
     UIScrollView   *picScrollView;
     BOOL            topPic;
     NSArray  *imageArray;
-    BOOL         kk;
+    BOOL     isOnce;
     
 }
 @property (nonatomic, strong) UIView       *inputBoxView;
@@ -30,7 +30,7 @@
 @property (nonatomic, strong) UIImageView  *backIV;
 
 @end
-static NSInteger count=0;
+
 @implementation ChatRoomViewController
 
 - (void)viewWillAppear:(BOOL)animated {
@@ -45,8 +45,7 @@ static NSInteger count=0;
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(keyboardWillShow:) name:UIKeyboardWillShowNotification object:nil];
     
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(keyboardWillHide:) name:UIKeyboardWillHideNotification object:nil];
-    
-    [self threadForPic];
+
     
     [self configChatRoomVCUI];
     
@@ -75,6 +74,9 @@ static NSInteger count=0;
     [_inputBoxView addSubview:_inputTF];
     
 
+    picScrollView = [[UIScrollView alloc]initWithFrame:CGRectMake(0, kScreenHeight, kScreenWidth, 200)];
+    picScrollView.backgroundColor = [ConfigUITools colorRandomly];
+    [self.view addSubview:picScrollView];
     
     
     UIButton *addBtn = [[UIButton alloc]init];
@@ -113,14 +115,14 @@ static NSInteger count=0;
     _inputBoxViewMinY = CGRectGetMinY(_inputBoxView.frame);
     //获取键盘高度，在不同设备上，以及中英文下是不同的
     CGFloat kbHeight = [[notification.userInfo objectForKey:UIKeyboardFrameEndUserInfoKey] CGRectValue].size.height;
-    
+    NSLog(@"height%f",kbHeight);
     double duration = [[notification.userInfo objectForKey:UIKeyboardAnimationDurationUserInfoKey] doubleValue];
     
     if (topPic) {
         
         if (_inputBoxViewMinY + 40 > kScreenHeight -  kbHeight) {
             
-            [UIView animateWithDuration:duration animations:^{
+            [UIView animateWithDuration:0.1 animations:^{
 
                 _inputBoxView.frame = CGRectMake(0, _inputBoxViewMinY -((_inputBoxViewMinY + 40) - (kScreenHeight -  kbHeight)), kScreenWidth, 40);
                 picScrollView.hidden = YES;
@@ -133,10 +135,7 @@ static NSInteger count=0;
         
     }else {
     
-        
-        
 
-        
         [UIView animateWithDuration:duration animations:^{
             
             _inputBoxView.frame = CGRectMake(0, _inputBoxViewMinY - kbHeight, kScreenWidth, 40);
@@ -159,190 +158,30 @@ static NSInteger count=0;
 }
 
 
-- (void)threadForPic {
-    
 
-//     mutableArray =[[NSMutableArray alloc]init];
-//    ALAssetsLibrary *assetsLibrary = [[ALAssetsLibrary alloc]init];//生成整个photolibrary句柄的实例
-////    NSMutableArray *mediaArray = [[NSMutableArray alloc]init];//存放media的数组
-////    NSMutableArray* assetURLDictionaries = [[NSMutableArray alloc] init];
-//     NSMutableArray* assetURLDictionaries = [[NSMutableArray alloc] init];
-//     library = [[ALAssetsLibrary alloc] init];
-//    [assetsLibrary enumerateGroupsWithTypes:ALAssetsGroupAll usingBlock:^(ALAssetsGroup *group, BOOL *stop) {//获取所有group
-//        [group enumerateAssetsUsingBlock:^(ALAsset *result, NSUInteger index, BOOL *stop) {//从group里面
-//
-//            NSString* assetType = [result valueForProperty:ALAssetPropertyType];
-//            if ([assetType isEqualToString:ALAssetTypePhoto]) {
-//                
-//                [assetURLDictionaries addObject:[result valueForProperty:ALAssetPropertyURLs]];
-//                 NSURL *url= (NSURL*) [[result defaultRepresentation]url];
-//                
-//                [assetsLibrary assetForURL:url
-//                 
-//                         resultBlock:^(ALAsset *asset) {
-//                             
-//                             [mutableArray addObject:[UIImage imageWithCGImage:[[asset defaultRepresentation] fullScreenImage]]];
-//                             
-//                             
-//                             
-////                             if ([mutableArray count]==count)
-////                                 
-////                             {
-////                                 
-////                                 imageArray=[[NSArray alloc] initWithArray:mutableArray];
-////                                 
-////                                 [self allPhotosCollected:imageArray];
-////                                 
-////                             }
-//                             
-//                         }
-//                 
-//                        failureBlock:^(NSError *error){ NSLog(@"operation was not successfull!"); } ];
-//                             
-//   
-//
-////                NSLog(@"Photo%@",result);
-//            }else if([assetType isEqualToString:ALAssetTypeVideo]){
-////                NSLog(@"Video");
-//            }else if([assetType isEqualToString:ALAssetTypeUnknown]){
-////                NSLog(@"Unknow AssetType");
-//            }
-//            
-//                      NSLog(@"%@",mutableArray);
-//
-//        }];
-//
-//        
-//        
-//        
-//        
-//        
-//    } failureBlock:^(NSError *error) {
-//        NSLog(@"Enumerate the asset groups failed.");
-//    }];
-//    
-  
-
-    
-    
-        dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
-    
-    imageArray=[[NSArray alloc] init];
-    
-    mutableArray =[[NSMutableArray alloc]init];
-    
-    NSMutableArray* assetURLDictionaries = [[NSMutableArray alloc] init];
-    
-    
-    
-    library = [[ALAssetsLibrary alloc] init];
-    
-    
-    
-    void (^assetEnumerator)( ALAsset *, NSUInteger, BOOL *) = ^(ALAsset *result, NSUInteger index, BOOL *stop) {
-        
-        if(result != nil) {
-            
-            if([[result valueForProperty:ALAssetPropertyType] isEqualToString:ALAssetTypePhoto]) {
-                
-                [assetURLDictionaries addObject:[result valueForProperty:ALAssetPropertyURLs]];
-                
-                
-                
-                NSURL *url= (NSURL*) [[result defaultRepresentation]url];
-                
-                
-                
-                [library assetForURL:url
-                 
-                         resultBlock:^(ALAsset *asset) {
-                             
-                             [mutableArray addObject:[UIImage imageWithCGImage:[[asset defaultRepresentation] fullScreenImage]]];
-                             if ([mutableArray count]==count)
-                                 
-                             {
-                                 
-                                 imageArray=[[NSArray alloc] initWithArray:mutableArray];
-                                 
-                                 [self allPhotosCollected:imageArray];
-                                 
-                             }
-
-                         }
-                 
-                        failureBlock:^(NSError *error){ NSLog(@"operation was not successfull!"); } ];
-                
-                
-                
-                
-            }
-            
-        }else {
-        
-            
-        }
-        
-    };
-    
-    
-    
-    NSMutableArray *assetGroups = [[NSMutableArray alloc] init];
-    
-    void (^ assetGroupEnumerator) ( ALAssetsGroup *, BOOL *)= ^(ALAssetsGroup *group, BOOL *stop) {
-        
-        if(group != nil) {
-            
-            [group enumerateAssetsUsingBlock:assetEnumerator];
-            
-            [assetGroups addObject:group];
-            
-            count=[group numberOfAssets];
-            
-        }
-        
-    };
-    
-    assetGroups = [[NSMutableArray alloc] init];
-    
-    [library enumerateGroupsWithTypes:ALAssetsGroupAll
-     
-                           usingBlock:assetGroupEnumerator
-     
-                         failureBlock:^(NSError *error) {NSLog(@"There is an error");}];
-    
-            dispatch_async(dispatch_get_main_queue(), ^{
-    
-                
-                
-            });
-    
-        });
-    
-}
 
 
 
 - (void)addPic {
     
 
-//    if (picScrollView) {
-//        
-//        picScrollView.hidden = NO;
-//    }
-    picScrollView = [[UIScrollView alloc]initWithFrame:CGRectMake(0, kScreenHeight, kScreenWidth, 200)];
-    picScrollView.backgroundColor = [ConfigUITools colorRandomly];
-    [self.view addSubview:picScrollView];
+    imageArray = [[NSMutableArray alloc]init];
+    NSArray *allDataArray = [NSArray array];
+    allDataArray = [[DBManager sharedDBManager] allDataWithTableName:@"UserInfo"];
+    imageArray = (NSMutableArray *)allDataArray;
 
+
+    topPic = YES;
+    [_inputTF resignFirstResponder];
     [UIView animateWithDuration:0.3 animations:^{
         
         _inputBoxView.frame = CGRectMake(0, kScreenHeight - 240, kScreenWidth, 40);
         picScrollView.frame = CGRectMake(0, kScreenHeight - 200, kScreenWidth, 200);
-        topPic = YES;
+
         
     }];
     
-        
-           [self allPhotosCollected:mutableArray];
+    [self allPhotosCollected:imageArray];
         
 
     
@@ -356,33 +195,46 @@ static NSInteger count=0;
     
     NSLog(@"all pictures are %@",imgArray);
     
-    if (topPic) {
+  
+    if (isOnce) {
         
+        picScrollView.hidden = NO;
+        
+    }else {
+    
+    
+        isOnce = YES;
         CGFloat length = 1;
         CGFloat margin = 5;
-        for (UIImage *img in imgArray) {
+        for (UserTestModel *model in imgArray) {
             UIImageView *iv = [[UIImageView alloc]init];
+            iv.image = [UIImage imageWithData:model.biggerData];
             
-            CGFloat ratio = img.size.width / img.size.height;
+            CGFloat ratio = iv.image.size.width / iv.image.size.height;
             
-            if (img.size.height >= kPicScrollerHeight - 2 * margin) {
-
+            if (iv.image.size.height >= kPicScrollerHeight - 2 * margin) {
+                
                 iv.frame = CGRectMake(length, margin, ratio * (kPicScrollerHeight - 2 * margin), (kPicScrollerHeight - 2 * margin));
                 
             }else {
-
-                iv.frame = CGRectMake(length, kPicScrollerHeight / 2.0 - img.size.height / 2.0, img.size.width, img.size.height);
+                
+                iv.frame = CGRectMake(length, kPicScrollerHeight / 2.0 - iv.image.size.height / 2.0, iv.image.size.width, iv.image.size.height);
                 
             }
             
             length = CGRectGetMaxX(iv.frame) + margin;
             [picScrollView addSubview:iv];
-            iv.image = img;
-            NSLog(@"%@",NSStringFromCGSize(img.size));
+            
+            NSLog(@"%@",NSStringFromCGSize(iv.image.size));
             
         }
         picScrollView.contentSize = CGSizeMake(length, kPicScrollerHeight);
+
+    
     }
+        
+        
+    
     
     
     
@@ -409,14 +261,6 @@ static NSInteger count=0;
             topPic = NO;
         }];
 
-        for (UIImageView *f in picScrollView.subviews) {
-            
-            [f removeFromSuperview];
-            f == nil;
-            
-        }
-                [picScrollView removeFromSuperview];
-        picScrollView = nil;
         
     }else {
     

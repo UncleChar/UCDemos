@@ -30,7 +30,7 @@
  */
 #import "Masonry.h"
 #import "SVProgressHUD.h"
-
+#import "DBManager.h"
 
 #define kAvatarImgFloderName   @"LeftElementsFile"
 #define kPersonalizedSignature @"userSign"

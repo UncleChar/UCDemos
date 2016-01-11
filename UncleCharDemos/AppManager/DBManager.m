@@ -84,6 +84,21 @@ static DBManager *_db = nil;
                 NSLog(@"create falied");
                 
             }
+            }else {
+            
+                NSString *sqlStr = [NSString stringWithFormat:@"create table if not exists %@(fileName text ,userID text primary key,biggerData blod )",tableName];
+                
+                BOOL isSuccess = [_fmdb executeUpdate:sqlStr];
+                if (isSuccess) {
+                    
+                    NSLog(@"create succeed");
+                    
+                }else {
+                    
+                    NSLog(@"create falied");
+                    
+                }
+            
             }
         
     }else {  // 如果存在就要先判断字段是否变动  用于数据库的升级（字段里可能有增减），比如我给一个表名为userInfo增加一个字段 telephone
