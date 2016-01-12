@@ -65,11 +65,11 @@
 }
 - (void)imitateRefresh {
 
-    _timer = [NSTimer scheduledTimerWithTimeInterval:0.1 target:self selector:@selector(rotationRefreshView) userInfo:nil repeats:YES];
+    _timer = [NSTimer scheduledTimerWithTimeInterval:0.05 target:self selector:@selector(rotationRefreshView) userInfo:nil repeats:YES];
     dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
         
         
-        [NSThread sleepForTimeInterval:4];
+        [NSThread sleepForTimeInterval:8];
         dispatch_async(dispatch_get_main_queue(), ^{
             
 
@@ -243,7 +243,7 @@
 #pragma mark 角标旋转
 - (void)rotationRefreshView
 {
-    _layer.transform = CATransform3DRotate(_layer.transform, M_PI_4 / 5, 0, 0, 1);
+    _layer.transform = CATransform3DRotate(_layer.transform, M_PI_4 / 6, 0, 0, 1);
 }
 
 - (void)messageVC {

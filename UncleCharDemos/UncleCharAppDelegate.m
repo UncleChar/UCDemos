@@ -83,10 +83,10 @@
 //        [CoreLaunchPlus animWithWindow:self.window image:[UIImage imageNamed:@"Index"]];
     
     /** Cool版本 */
-//        [CoreLaunchCool animWithWindow:self.window image:[UIImage imageNamed:@"Index"]];
+        [CoreLaunchCool animWithWindow:self.window image:[UIImage imageNamed:@"Index"]];
     
     /** Pro版本 */
-    [CoreLaunchPro animWithWindow:self.window image:[UIImage imageNamed:@"Index"]];
+//    [CoreLaunchPro animWithWindow:self.window image:[UIImage imageNamed:@"Index"]];
     [self.window makeKeyAndVisible];
     
     

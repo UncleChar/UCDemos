@@ -33,7 +33,7 @@
         
         [imageV removeFromSuperview];
         
-        [window.layer transitionWithAnimType:TransitionAnimTypeRamdom subType:TransitionSubtypesFromRamdom curve:TransitionCurveRamdom duration:1.6];
+        [window.layer transitionWithAnimType:TransitionAnimTypeOglFlip subType:TransitionSubtypesFromRight curve:TransitionCurveRamdom duration:1.6];
     });
 }
 
