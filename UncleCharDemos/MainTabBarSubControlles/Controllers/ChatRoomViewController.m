@@ -40,11 +40,12 @@
 }
 
 - (void)viewDidLoad {
+    
     [super viewDidLoad];
     
-    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(keyboardWillShow:) name:UIKeyboardWillShowNotification object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(keyboardWillShow1:) name:UIKeyboardWillShowNotification object:nil];
     
-    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(keyboardWillHide:) name:UIKeyboardWillHideNotification object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(keyboardWillHide1:) name:UIKeyboardWillHideNotification object:nil];
 
     
     [self configChatRoomVCUI];
@@ -65,6 +66,7 @@
     
     _inputBoxView = [[UIView alloc]initWithFrame:CGRectMake(0, kScreenHeight - 40, kScreenWidth, 40)];
     _inputBoxView.backgroundColor = [UIColor colorWithRed:200/255.0 green:200/255.0 blue:200/255.0 alpha:1];
+    _inputBoxViewMinY = CGRectGetMinY(_inputBoxView.frame);
     [self.view addSubview:_inputBoxView];
     
     _inputTF = [[UITextField alloc]init];
@@ -79,25 +81,26 @@
     [self.view addSubview:picScrollView];
     
     
-    UIButton *addBtn = [[UIButton alloc]init];
+    UIButton *addBtn = [UIButton buttonWithType:UIButtonTypeContactAdd];
     [addBtn addTarget:self action:@selector(addPic) forControlEvents:UIControlEventTouchUpInside];
-    [addBtn setBackgroundImage:[UIImage imageNamed:@"contacts_add@2x"] forState:UIControlStateNormal];
+//    [addBtn setBackgroundImage:[UIImage imageNamed:@"contacts_add@2x"] forState:UIControlStateNormal];
     [_inputBoxView addSubview:addBtn];
+    
     
     [_inputTF mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.equalTo(_inputBoxView.mas_left).with.offset(10);
         make.top.equalTo(_inputBoxView.mas_top).with.offset(5);
         make.bottom.equalTo(_inputBoxView.mas_bottom).with.offset(-5);
-        make.right.equalTo(addBtn.mas_left).with.offset(-10);
+        make.right.equalTo(addBtn.mas_left).with.offset(-5);
         
     }];
     
     [addBtn mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.left.equalTo(_inputTF.mas_right).with.offset(10);
-        make.top.equalTo(_inputBoxView.mas_top).with.offset(10);
-        make.bottom.equalTo(_inputBoxView.mas_bottom).with.offset(-10);
-        make.right.equalTo(_inputBoxView.mas_right).with.offset(-10);
-        make.width.equalTo(@(19));
+        make.left.equalTo(_inputTF.mas_right).with.offset(5);
+        make.top.equalTo(_inputBoxView.mas_top).with.offset(2);
+        make.bottom.equalTo(_inputBoxView.mas_bottom).with.offset(-2);
+        make.right.equalTo(_inputBoxView.mas_right).with.offset(-5);
+        make.width.equalTo(@(36));
         
     }];
     
@@ -109,19 +112,23 @@
 #pragma mark - keyboard events
 
 ///键盘显示事件
-- (void) keyboardWillShow:(NSNotification *)notification {
+- (void) keyboardWillShow1:(NSNotification *)notification {
     
     
-    _inputBoxViewMinY = CGRectGetMinY(_inputBoxView.frame);
+    
     //获取键盘高度，在不同设备上，以及中英文下是不同的
     CGFloat kbHeight = [[notification.userInfo objectForKey:UIKeyboardFrameEndUserInfoKey] CGRectValue].size.height;
-    NSLog(@"height%f",kbHeight);
+    NSLog(@"_inputBoxViewMinY%f",_inputBoxViewMinY);
     double duration = [[notification.userInfo objectForKey:UIKeyboardAnimationDurationUserInfoKey] doubleValue];
     
     if (topPic) {
         
         if (_inputBoxViewMinY + 40 > kScreenHeight -  kbHeight) {
-            
+           
+//            if (kbHeight) {
+//                <#statements#>
+//            }
+            NSLog(@"bbbbb");
             [UIView animateWithDuration:0.1 animations:^{
 
                 _inputBoxView.frame = CGRectMake(0, _inputBoxViewMinY -((_inputBoxViewMinY + 40) - (kScreenHeight -  kbHeight)), kScreenWidth, 40);
@@ -136,20 +143,23 @@
     }else {
     
 
+        
+          if (kbHeight > 0) {
         [UIView animateWithDuration:duration animations:^{
-            
+             NSLog(@"bbbllllbb");
             _inputBoxView.frame = CGRectMake(0, _inputBoxViewMinY - kbHeight, kScreenWidth, 40);
             
         }];
         
     }
-    
+    }
 
     //注明：这里不需要移除通知
 }
 
-- (void) keyboardWillHide:(NSNotification *)notify {
-    
+- (void) keyboardWillHide1:(NSNotification *)notify {
+    CGFloat kbHeight = [[notify.userInfo objectForKey:UIKeyboardFrameEndUserInfoKey] CGRectValue].size.height;
+    NSLog(@"hidenheight%f",kbHeight);
     double duration = [[notify.userInfo objectForKey:UIKeyboardAnimationDurationUserInfoKey] doubleValue];
     [UIView animateWithDuration:duration animations:^{
 
@@ -251,7 +261,7 @@
 }
 - (void)touchesBegan:(NSSet<UITouch *> *)touches withEvent:(UIEvent *)event {
 
-   
+   [_inputTF resignFirstResponder];
     if (topPic) {
         
         [UIView animateWithDuration:0.3 animations:^{
@@ -264,7 +274,7 @@
         
     }else {
     
-     [_inputTF resignFirstResponder];
+     
         [UIView animateWithDuration:0.3 animations:^{
             
             _inputBoxView.frame = CGRectMake(0, kScreenHeight - 40, kScreenWidth, 40);

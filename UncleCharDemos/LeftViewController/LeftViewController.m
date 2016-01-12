@@ -52,7 +52,7 @@
     
     
     _topBackgrooundImg = [[UIImageView alloc]initWithFrame:CGRectMake(0, 0, kScreenWidth * 5 / 6, kScreenWidth * 5 / 12)];
-    _topBackgrooundImg.alpha =1;
+    _topBackgrooundImg.alpha =0.6;
     _topBackgrooundImg.backgroundColor = [ConfigUITools colorRandomly];
     [_headView addSubview:_topBackgrooundImg];
     
@@ -83,23 +83,23 @@
     _listTableView.dataSource = self;
     _listTableView.delegate = self;
     _listTableView.backgroundColor = [UIColor colorWithRed:30.0/255 green:200.0/255 blue:249.0/255 alpha:1];
-    _listTableView.alpha = 0.9;
+    _listTableView.alpha = 0.6;
     [self.view addSubview:_listTableView];
     
     _bottomView = [[UIView alloc]initWithFrame:CGRectMake(0, self.view.frame.size.height * 7 / 8, self.view.frame.size.width, self.view.frame.size.height  / 8)];
     _bottomView.backgroundColor = [UIColor colorWithRed:30.0/255 green:200.0/255 blue:100.0/255 alpha:1];
-    _bottomView.alpha = 0.9;
+    _bottomView.alpha = 0.6;
     [self.view addSubview:_bottomView];
 
-    UIButton *exitBtn = [[UIButton alloc]initWithFrame:CGRectMake(10, 10, 80, 40)];
-    exitBtn.backgroundColor = [UIColor whiteColor];
-    [exitBtn setTitle:@"Exit" forState:UIControlStateNormal];
-    [exitBtn setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
-    exitBtn.layer.cornerRadius = 6;
-    exitBtn.layer.masksToBounds = 1;
-    exitBtn.tag = 100 + 1;
-    [_bottomView addSubview:exitBtn];
-    [exitBtn addTarget:self action:@selector(exitBtnClicked) forControlEvents:UIControlEventTouchUpInside];
+//    UIButton *exitBtn = [[UIButton alloc]initWithFrame:CGRectMake(10, 10, 80, 40)];
+//    exitBtn.backgroundColor = [UIColor whiteColor];
+//    [exitBtn setTitle:@"Exit" forState:UIControlStateNormal];
+//    [exitBtn setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
+//    exitBtn.layer.cornerRadius = 6;
+//    exitBtn.layer.masksToBounds = 1;
+//    exitBtn.tag = 100 + 1;
+//    [_bottomView addSubview:exitBtn];
+//    [exitBtn addTarget:self action:@selector(exitBtnClicked) forControlEvents:UIControlEventTouchUpInside];
    
 }
 

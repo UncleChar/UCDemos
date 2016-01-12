@@ -9,9 +9,20 @@
 #import "LoginViewController.h"
 #import "UncleCharAppDelegate.h"
 #import "YFGIFImageView.h"
+#import <UIKit/UIKit.h>
 
+@interface LoginViewController ()<UITableViewDataSource,UITableViewDelegate,UITextFieldDelegate>
 
-@interface LoginViewController ()
+{
+    
+    UITextField         *_accountTF;
+    NSArray             *_usersArray;
+    UITableView         *_showHistoryTableView;
+    NSMutableArray      *_transferArray;
+    NSString            *_userInputAccount;
+    BOOL                 _isAleradySelected;
+    NSInteger            _lengthOfHistory;
+}
 
 @property (nonatomic, strong) UITextField  *userAccount;
 @property (nonatomic, strong) UITextField  *userPassword;
@@ -59,6 +70,8 @@
     
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(keyboardWillHide:) name:UIKeyboardWillHideNotification object:nil];
     
+    _usersArray = @[@"UncleChar",@"Charles",@"DreamM",@"TingXia",@"char"];
+    _transferArray = [[NSMutableArray alloc]init];
     
     _baseView = [[UIView alloc]initWithFrame:self.view.frame];
     _baseView.alpha = 0.0;
@@ -83,6 +96,7 @@
     _userAccount.borderStyle = UITextBorderStyleRoundedRect;
     _userAccount.backgroundColor = [UIColor whiteColor];
     _userAccount.placeholder = @"Account";
+    _userAccount.delegate = self;
     _userAccount.clearButtonMode = UITextFieldViewModeWhileEditing;
     
     _userPassword = [[UITextField alloc]init];
@@ -171,6 +185,12 @@
     }];
     
     
+//    _accountTF = [[UITextField alloc]init];
+//    _accountTF.frame = CGRectMake(CGRectGetMinX(_userAccount.frame), CGRectGetMaxY(_userAccount.frame), _userAccount.frame.size.width, 30);
+//    _accountTF.borderStyle = UITextBorderStyleRoundedRect;
+//    _accountTF.delegate = self;
+//    [self.view addSubview:_accountTF];
+    
     [UIView animateWithDuration:2.0 animations:^{
         
         _baseView.alpha = 1.0;
@@ -184,6 +204,163 @@
     }];
   
 }
+
+- (void)textFieldDidBeginEditing:(UITextField *)textField {
+    
+    NSLog(@"gegin");
+    [self configTV];
+    
+}
+- (BOOL)textField:(UITextField *)textField shouldChangeCharactersInRange:(NSRange)range replacementString:(NSString *)string {
+    
+    
+    if (_isAleradySelected) {
+        
+
+        _userAccount.text = @"";
+
+        
+        _isAleradySelected = NO;
+    }else {
+    
+    
+        NSLog(@"#%@  88  %@",string,textField.text);
+        NSLog(@"%@",NSStringFromRange(range));
+        [_transferArray removeAllObjects];
+        
+        
+        NSRange rangeStr = range;
+        
+        
+        if (rangeStr.length == 1) {//此时是删除的的
+            
+            
+            _userInputAccount = [_userInputAccount substringToIndex:rangeStr.location];
+            
+            NSLog(@"#inputdeleted# %@",_userInputAccount);
+            
+        }else { //此时是追加字符的
+            
+            if (rangeStr.location == 0) {
+                
+                _userInputAccount = string;
+                
+            }else {
+                
+                _userInputAccount = [_userInputAccount stringByAppendingString:string];
+                
+            }
+            NSLog(@"#inputChates# %@",_userInputAccount);
+        }
+        
+        
+        
+        
+        
+        
+        
+        for (NSString *baseStr in _usersArray) {
+            
+            if ([baseStr containsString:_userInputAccount] || [baseStr isEqualToString:_userInputAccount]) {
+                
+                [_transferArray addObject:baseStr];
+           
+            }
+            
+            
+        }
+        
+        if (_transferArray.count == 0) {
+            
+            _showHistoryTableView.hidden = YES;
+            //        [_showHistoryTableView reloadData];
+        }else {
+            
+            _showHistoryTableView.hidden = NO;
+            _showHistoryTableView.frame = CGRectMake(CGRectGetMinX(_userAccount.frame), CGRectGetMaxY(_userAccount.frame), CGRectGetWidth(_userAccount.frame), 44 * _transferArray.count);
+            [_showHistoryTableView reloadData];
+            
+        }
+        
+        
+        
+        
+        
+        
+        
+
+    
+    }
+    
+    
+    
+    return YES;
+
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+}
+
+
+- (void)configTV {
+    
+    if (!_showHistoryTableView) {
+        
+        _showHistoryTableView = [[UITableView alloc]initWithFrame:CGRectMake(CGRectGetMinX(_userAccount.frame), CGRectGetMaxY(_userAccount.frame), CGRectGetWidth(_userAccount.frame), 44 * _usersArray.count)];
+        _showHistoryTableView.delegate = self;
+        _showHistoryTableView.dataSource = self;
+        [_baseView addSubview:_showHistoryTableView];
+    }
+}
+
+
+- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
+    
+    if (_userInputAccount.length > 0) {
+        
+        return _transferArray.count;
+    }
+    return _usersArray.count;
+}
+
+- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
+    
+    static NSString *ID = @"cellId";
+    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:ID];
+    if (nil == cell) {
+        
+        cell = [[UITableViewCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:ID];
+    }
+    if (_userInputAccount.length > 0) {
+        cell.textLabel.text = _transferArray[indexPath.row];
+
+    }else {
+        
+        cell.textLabel.text = _usersArray[indexPath.row];
+    }
+    
+    return cell;
+}
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
+    
+    
+    _userAccount.text =_transferArray.count > 0 ? _transferArray[indexPath.row]:_usersArray[indexPath.row];
+    _showHistoryTableView.hidden = YES;
+    _isAleradySelected = YES;
+    _lengthOfHistory = _userAccount.text.length;
+}
+
+
+
+
 
 
 - (void)contactBackBtn {
@@ -248,7 +425,7 @@
 
     //获取键盘高度，在不同设备上，以及中英文下是不同的
     CGFloat kbHeight = [[notification.userInfo objectForKey:UIKeyboardFrameEndUserInfoKey] CGRectValue].size.height;
-    
+    NSLog(@"login %f",kbHeight);
     double duration = [[notification.userInfo objectForKey:UIKeyboardAnimationDurationUserInfoKey] doubleValue];
     
     if(_btnMaxY >(self.view.frame.size.height - kbHeight)) {
@@ -264,6 +441,7 @@
 
 - (void) keyboardWillHide:(NSNotification *)notify {
     
+    _showHistoryTableView.hidden = YES;
     double duration = [[notify.userInfo objectForKey:UIKeyboardAnimationDurationUserInfoKey] doubleValue];
     [UIView animateWithDuration:duration + 0.3 animations:^{
         _baseView.frame = CGRectMake(self.view.frame.origin.x, self.view.frame.origin.y, self.view.frame.size.width, self.view.frame.size.height);

@@ -13,11 +13,15 @@
 #import "DBManager.h"
 #import <BaiduMapAPI_Map/BMKMapComponent.h>
 
-
+#import "CoreLaunchLite.h"
+#import "CoreLaunchCool.h"
+#import "CoreLaunchPro.h"
+#import "CoreLaunchPlus.h"
 @interface UncleCharAppDelegate ()
 {
     UIScrollView *_loginScrollView;
 }
+
 @end
 
 @implementation UncleCharAppDelegate
@@ -38,11 +42,6 @@
     [db createDBTableWithTableName:@"UserInfo"];
     [db createDBTableWithTableName:@"UserFavouriteAndSave"];
     
-    
-//    UIApplication *app=[UIApplication sharedApplication];
-//    app.applicationIconBadgeNumber=123;
-//    //设置指示器的联网动画
-//    app.networkActivityIndicatorVisible=YES;
 
     _mapManager = [[BMKMapManager alloc]init];
     BOOL ret = [_mapManager start:@"rChGCt4DtWI0XsC56Wnvj7ov" generalDelegate:self];
@@ -50,27 +49,71 @@
         NSLog(@"manager start failed!");
     }
     
-    
-    
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(netStatusDidChanged:) name:kReachabilityChangedNotification object:nil];
     _hostReach = [Reachability reachabilityWithHostName:@"www.google.com"];//可以以多种形式初始化
     [_hostReach startNotifier];  //开始监听,会启动一个run loop
- 
+
     
     self.window = [[UIWindow alloc]initWithFrame:[UIScreen mainScreen].bounds];
     UINavigationController *rootNav;
+
     if ([[NSUserDefaults standardUserDefaults]boolForKey:kUserLoginStatus]) {
         
         rootNav = [[UINavigationController alloc]initWithRootViewController:[AppEngineManager sharedInstance].baseViewController];
+        
     }else {
-    
+
         rootNav = [[UINavigationController  alloc]initWithRootViewController:[[LoginViewController alloc]init]];
         
     }
+
     self.window.rootViewController = rootNav;
+    
+//    UIView *rootView = self.window.rootViewController.view;
+//    UIImageView *iv = [[UIImageView alloc]initWithFrame:CGRectMake(0, 0, kScreenWidth, kScreenHeight)];
+//    iv.image = [UIImage imageNamed:@"1"];
+//    [rootView addSubview:iv];
+//    [UIView animateWithDuration:3 animations:^{
+//        iv.alpha = 0;
+//    }];
+    /** Lite版本 */
+//        [CoreLaunchLite animWithWindow:self.window image:[UIImage imageNamed:@"Index"]];
+    
+    /** Plus版本 */
+//        [CoreLaunchPlus animWithWindow:self.window image:[UIImage imageNamed:@"Index"]];
+    
+    /** Cool版本 */
+//        [CoreLaunchCool animWithWindow:self.window image:[UIImage imageNamed:@"Index"]];
+    
+    /** Pro版本 */
+    [CoreLaunchPro animWithWindow:self.window image:[UIImage imageNamed:@"Index"]];
     [self.window makeKeyAndVisible];
+    
+    
+
     return YES;
 }
+
+- (void)go {
+
+    UIImageView *iv = [[UIImageView alloc]initWithFrame:CGRectMake(0, 0, kScreenWidth, kScreenHeight)];
+    iv.image = [UIImage imageNamed:@"Index"];
+    [[UIApplication sharedApplication].keyWindow addSubview:iv];
+    
+    [UIView animateWithDuration:5 animations:^{
+    
+    iv.alpha = 0;
+    
+     } completion:^(BOOL finished) {
+
+    
+
+     }];
+
+}
+
+
+
 
 - (void)applicationWillResignActive:(UIApplication *)application {
     // Sent when the application is about to move from active to inactive state. This can occur for certain types of temporary interruptions (such as an incoming phone call or SMS message) or when the user quits the application and it begins the transition to the background state.

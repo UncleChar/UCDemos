@@ -51,11 +51,11 @@
     leftRefresh.image = [UIImage imageNamed:@"basevc_refresh@2x"];
     [self.navigationController.view addSubview:leftRefresh];
 
-//    _layer = leftRefresh.layer;
+    _layer = leftRefresh.layer;
 
 
 
-//    [self imitateRefresh];
+    [self imitateRefresh];
     
     [self configMessageVCUI];
     
@@ -74,8 +74,8 @@
             
 
             [_timer invalidate];
-            [_userChatTableView.mj_header endRefreshing];
-//            _layer.transform = CATransform3DIdentity;
+//            [_userChatTableView.mj_header endRefreshing];
+            _layer.transform = CATransform3DIdentity;
             
         });
     });
@@ -117,7 +117,7 @@
     _userChatTableView.delegate   = self;
     _userChatTableView.dataSource = self;
 
-//    _userChatTableView.backgroundColor = [UIColor purpleColor];
+    _userChatTableView.backgroundColor = [UIColor clearColor];
     [self.view addSubview:_userChatTableView];
     
     _userSearchController = [[UISearchController alloc]initWithSearchResultsController:nil];
@@ -129,7 +129,8 @@
     _userSearchController.view.backgroundColor = [UIColor clearColor];
     _userSearchController.searchBar.delegate = self;
     _userChatTableView.tableHeaderView = self.userSearchController.searchBar;
-//    _userSearchController.hidesNavigationBarDuringPresentation = NO;
+//    _userSearchController.searchBar.backgroundColor = [UIColor redColor];
+    _userSearchController.hidesNavigationBarDuringPresentation = NO;
     
     
     _userChatTableView.mj_header = [MJRefreshNormalHeader headerWithRefreshingBlock:^{
@@ -244,6 +245,7 @@
 {
     _layer.transform = CATransform3DRotate(_layer.transform, M_PI_4 / 5, 0, 0, 1);
 }
+
 - (void)messageVC {
 
     NSLog(@"leftBtnClicked");
