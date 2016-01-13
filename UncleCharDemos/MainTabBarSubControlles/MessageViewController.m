@@ -23,7 +23,7 @@
 @property (nonatomic, strong) UITableView         *userChatTableView;
 @property (nonatomic, strong) NSMutableArray      *userChatArrary;
 @property (nonatomic, strong) NSMutableArray      *userSearchResultArrary;
-@property (nonatomic, strong) UISearchController  *userSearchController;
+//@property (nonatomic, strong) UISearchController  *userSearchController;
 @property (nonatomic, strong) MJRefreshHeader     *header;
 @end
 @implementation MessageViewController

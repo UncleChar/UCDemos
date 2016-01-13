@@ -15,6 +15,9 @@
 #import "GifPlayViewController.h"
 #import "VoiceRecognitionViewController.h"
 
+#define kAvatarImgWidth    kDriftXOfLeftView / 4
+#define kAvatarImgHeight   kDriftXOfLeftView / 4
+
 @interface LeftViewController ()<UITableViewDataSource,UITableViewDelegate>
 
 @property (nonatomic, strong) UIImageView  *avatarImageView;
@@ -46,19 +49,21 @@
 }
 - (void)configElementsUI {
 
-    self.view.frame = CGRectMake(-kScreenWidth * 5 / 6, 0, kScreenWidth  * 5 / 6, kScreenHeight);
+    self.view.frame = CGRectMake(-kDriftXOfLeftView, 0, kDriftXOfLeftView, kScreenHeight);
     _headView = [[UIView alloc]initWithFrame:CGRectMake(0, 0, self.view.frame.size.width, self.view.frame.size.width / 2)];
     [self.view addSubview:_headView];
     
     
-    _topBackgrooundImg = [[UIImageView alloc]initWithFrame:CGRectMake(0, 0, kScreenWidth * 5 / 6, kScreenWidth * 5 / 12)];
+    _topBackgrooundImg = [[UIImageView alloc]initWithFrame:CGRectMake(0, 0, kDriftXOfLeftView, kDriftXOfLeftView / 2)];
     _topBackgrooundImg.alpha =0.6;
     _topBackgrooundImg.backgroundColor = [ConfigUITools colorRandomly];
     [_headView addSubview:_topBackgrooundImg];
     
-    _avatarImageView = [[UIImageView alloc]initWithFrame:CGRectMake(kScreenWidth  * 5 / 6 / 12, 45, 50, 50)];
-    _avatarImageView.image = [UIImage imageNamed:@"icon"];
-    _avatarImageView.layer.cornerRadius = 25;
+    _avatarImageView = [[UIImageView alloc]initWithFrame:CGRectMake(kDriftXOfLeftView / 12, kAvatarImgWidth / 2, kAvatarImgWidth, kAvatarImgHeight)];
+    
+    NSString *path = [[NSBundle mainBundle] pathForResource:@"icon" ofType:@"png"];
+    _avatarImageView.image = [UIImage imageWithContentsOfFile:path];
+    _avatarImageView.layer.cornerRadius = kAvatarImgWidth / 2;
     _avatarImageView.layer.masksToBounds = 1;
     _avatarImageView.userInteractionEnabled = 1;
     [_headView addSubview:_avatarImageView];

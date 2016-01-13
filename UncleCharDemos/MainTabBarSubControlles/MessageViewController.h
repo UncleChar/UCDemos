@@ -11,5 +11,6 @@
 @interface MessageViewController : SuperViewController
 
 //- (void)jumpToOtherController;
+@property (nonatomic, strong) UISearchController  *userSearchController;
 
 @end

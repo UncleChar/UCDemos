@@ -100,13 +100,19 @@
     [baseView addGestureRecognizer:self.tapGesture];
     //在这里提前刷洗防止tableView留下上次选中的状态
     [_leftViewController.listTableView reloadData];
-    displacementOfLeftViewController = centerOfBaseViewController.x + kScreenWidth - kScreenWidth / 6;;
+    displacementOfLeftViewController = centerOfBaseViewController.x + kDriftXOfBaseView;
+      //防止左侧控制器出现后视图可以响应事件
+    _mainTabBarController.view.subviews[0].userInteractionEnabled = NO;
+    NSLog(@"view %@",_mainTabBarController.view.subviews[0]);
+
     [self doAnimationWithType:@"left"];
     [self.navigationController popToRootViewControllerAnimated:YES];
 }
 
 - (void)baseControllerAppear{
     
+    _mainTabBarController.view.subviews[0].userInteractionEnabled = YES;
+
     [baseView removeGestureRecognizer:self.tapGesture];
     displacementOfLeftViewController = self.view.center.x;
     [self doAnimationWithType:@"home"];
@@ -124,7 +130,7 @@
 - (void)doAnimationWithType:(NSString *)type {
     
     
-    [UIView animateWithDuration:0.5 animations:^{
+    [UIView animateWithDuration:kDriftDuration animations:^{
         
         baseView.center = CGPointMake(displacementOfLeftViewController, self.view.center.y);
         
